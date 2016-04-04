@@ -1,0 +1,31 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+DTSTART:20160416T160000Z
+DTEND:20160416T183000Z
+DTSTAMP:20160404T210226Z
+ORGANIZER;CN=maquinaire@gmail.com:mailto:maquinaire@gmail.com
+UID:5cj9gsst77l7j9g3sdq5hj27is@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=creua.cat@gmail.com;X-NUM-GUESTS=0:mailto:creua.cat@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE
+ ;CN=maquinaire@gmail.com;X-NUM-GUESTS=0:mailto:maquinaire@gmail.com
+CLASS:PUBLIC
+CREATED:20160404T205856Z
+DESCRIPTION:Concert de cant de les corals de Borredà i Vilada\, dins la Par
+ ròquia de Borredà\nConsulta el teu esdeveniment a https://www.google.com/ca
+ lendar/event?action=VIEW&eid=NWNqOWdzc3Q3N2w3ajlnM3NkcTVoajI3aXMgY3JldWEuY2
+ F0QG0&tok=MjAjbWFxdWluYWlyZUBnbWFpbC5jb203OTMzMDg4MGZiZDllNDY4M2NiZDIzNDQwN
+ zNhNjVhYTc3ODQ5OTQ0&ctz=Europe/Madrid&hl=ca.
+LAST-MODIFIED:20160404T210226Z
+LOCATION:Parròquia de Borredà\, Carrer Manresa\, 7\, 08619 Borredà\, Barcel
+ ona\, Espanya
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Coral de Borredà i Vilada
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
