@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="initial-scale=1, width=device-width, height=device-height" />
+    <meta name="description" content="Quilibrium Barcelona Service">
+    <meta name="author" content="Albert Vila Picas albertvilapicas@gmail.com>">
+    <script type="text/javascript"> var l = location.href;
+    if (l.indexOf('?')>-1) 
+        window.location.replace(location.href.replace('/?','/mind.php?'));
+    </script>
+    <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+    <link rel="stylesheet" type="text/css" href="./content/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./content/css/scene.css">
+    <link rel="stylesheet" type="text/css" href="./content/css/dosis.css">
+    <link href="./content/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="./js/jquery-1.11.1.js"></script>
+
+        <title data-lang="title">Exclusive and personalised trips to Barcelona: Concierge Services.</title>
+        <meta name="description" content="Quilibrium offers travel Premium services and experiences for business, tourism and wellness and beauty, The Concierge at Quilibrium, is at the client side 24 hours a day, 365 days a year accompanying in your language."/>
+        <meta name="keywords" content="Body &amp; mind care, receptive travel Barcelona, The luxury Know in Barcelona, Premium Concierge Services Barcelona, Premium Concierge services Catalonia, Luxury trips Barcelona, wine tasting Catalonia, Ferrari experience Barcelona, Business trips Barcelona, Business Trips Catalonia, VIP services Barcelona, Gastronomy tours Barcelona, Corporate trips Barcelona, FCB VIP tickets, lifestyle barcelona"/>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+        <meta name="distribution" content="web"/>
+    <script src="./content/langs.js"></script>
+    </head>
+    <body>
+        <a id="menu-toggle" href="javascript:;" class="btn btn-lg toggle"><i class="fa fa-bars" style="color:darkgoldenrod"></i></a>
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <a id="menu-close" href="javascript:;" class="btn btn-lg pull-right toggle" style="opactity:1"><i class="fa fa-share" style="color:darkgoldenrod"></i></a>
+                <li class="sidebar-brand" style="margin-top:2.5em"><span data-lang="nomMenu" class="pull-right">E&amp;E – Menu</span></li>
+                <li><a class="menu" data-lang="homeMenu" href="#top">Home Portrait</a></li>
+                <li><a class="menu" data-lang="quiliMenu" href="http://www.quilibriumbarcelona.com" target="_blank">Quilibrium Barcelona</a></li>
+                <!--li><a class="menu" data-lang="premiumServices" href="#services">Premium Services</a></li-->
+                <li><a class="menu" data-lang="previewMenu" href="#suggestions">Fantastic Preview</a></li>
+                <li><a class="menu" data-lang="placesMenu" href="#places">Places and Plans</a></li>
+                <li><a class="menu" data-lang="contact" href="#contact">Contact us!</a></li>
+                <li>
+                  <a type="button" class="dropdown-toggle" data-toggle="dropdown">Language <span class="caret"></span></a>
+                  <ul id="langsBut" class="dropdown-menu inverse" role="menu">
+                  </ul>
+              </li>
+          </ul>
+      </div>
+      <a id="logo" class="logo-toggle" target="_blank" href="http://www.quilibriumbarcelona.com/mind.php??page_id=9&lang=en">
+        <!--img height="56px" src="content/img/logo.png"-->
+        <img class="size-medium" title="News fromv3" src="content/img/bodyQuili.jpg" alt="" width="152" height="75">
+        </a>
+      <!-- a class="logo-toggle" href="#contact" style="left:186px;top:2px"><h1><i class="fa fa-send"></i></h1></a-->
+      <!-- Full Page Image Header Area -->
+      <div id="top" class="header">
+        <div class="vert-text"><br>
+            <br><br><br><br>
+            <h1 data-lang="name" style="color:darkgoldenrod;text-shadow: 2px 2px 8px #FFFF22;">Experiences &amp; Emotions</h1>
+            <br>
+            <h2 style="color:gold">
+                <span data-lang="description">We organize your ideal experience to satisfy your wishes</span>
+                <!--em>We</em> Plan your best accommodation,
+                <em>You</em> Satisfy your desires.</h2-->
+            </h2><br><br><br><br><br>
+            <div class="row">
+                <a id="expop" data-lang="requestBut" href="#" class="btn btn-md chinaBut btn-default bop col-md-1 col-md-offset-1" data-toggle="popover" data-trigger="focus" title="requestBut" data-content="requestButText"> Experiences </a>
+                <div href="#services" class="col-md-2 col-md-offset-3">
+                    <!--a href="tel:+34648158914" class="btn btn-info btn-lg bop"><i class="fa fa-phone fa-2x"></i><br><br> +34 648 158 914</a-->
+                    <br>
+                    <a data-lang="contact" href="#" class="btn contactBut btn-default btn-md bop" data-toggle="modal" data-target="#contactModal">Contact us</a></div><br>
+                    <a id="empop" data-lang="learnButEmotions" href="#" class="btn chinaBut btn-md btn-default bop col-md-1 col-md-offset-3"  data-toggle="popover" data-trigger="focus" title="learnButEmotions" data-content="premiumServicesEmotionsText"> Emotions</a>
+                <!-- a href="#places" class="btn btn-default btn-lg btn-info bop">Gastronomy</a>
+                <a href="#plans" class="btn btn-default btn-lg btn-info bop">Transport</a>
+                <a href="#activities" class="btn btn-default btn-lg btn-info bop">Plans</a-->
+                </div><hr><br>
+
+
+                <!-- Services -->
+                <div id="services" class="services_">
+                    <div class="container">
+            <!--div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <h2 data-lang="premiumServices">Premium Services</h2>
+                    <hr>
+                </div>
+            </div-->
+
+            <div class="row">
+                <div class="col-md-2 col-md-offset-1 text-center">
+                    <div class="service-item">
+                        <a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="concierge" data-content="conciergeText">
+                            <i class="service-icon fa fa-key"></i></a>
+                            <h4 data-lang="concierge">Concierge</h4>
+                            <!--p data-lang="conciergeText">Contact us for a Premium Pack and enjoy our Premium Concierge Services and get all the benefits of joining our network.</p-->
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="service-item">
+                            <a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="quality" data-content="qualityText"><i class="service-icon fa fa-check"></i></a>
+                            <h4 data-lang="quality">Quality Assurance</h4>
+                            <!--p data-lang="qualityText">Our service has the highest Quality Standards, based on our extensive experience and track record, in addition to the prestigious Premium Life Style.</p-->
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="service-item">
+                            <a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="exclusive" data-content="exclusiveText" data-href="#sea"><i class="service-icon fa fa-shield"></i></a>
+                            <h4 data-lang="exclusive">Exclusive and personalized</h4>
+                            <!--p data-lang="exclusiveText">Every event is unique and special. We make your wishes and dreams come true with maximum discretion, trust and professionalism.</p-->
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="service-item">
+                            <a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="partner" data-content="partnerText"><i class="service-icon fa fa-share-alt"></i></a>
+                            <h4 data-lang="partner">Partnership</h4>
+                            <!--p data-lang="partnerText">Our extensive network of collaborators allow us to satisfy any request for any kind of activity with our local professionals, specialists, infrastructure and logistics.</p-->
+                        </div>
+                    </div>
+                <!--div class="col-md-2 text-center">
+                    <div class="service-item">
+                        <a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="recommended" data-content="recommendedText"><i class="service-icon fa fa-magnet"></i></a>
+                        <h4 data-lang="recommended">Recommended</h4>
+                        <p data-lang="recommendedText">Our experience is our biggest strength. Satisfaction and Success are guaranteed thanks to Quilibrium Barcelona’s quality criteria.</p>
+                    </div>
+                </div-->
+                <div class="col-md-2 text-center">
+                    <div class="service-item">
+                        <a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="recommendedCorporate" data-content="recommendedCorporateText" data-href="#corporate"><i class="service-icon fa fa-users"></i></a>
+                        <h4 data-lang="recommendedCorporate">Corporate</h4>
+                        <!--p data-lang="tripsText">Planning a trip to Europe? We can offer you all type of transport methods to explore your destination. Come and visit Barcelona!</p-->
+                    </div>
+                </div>
+            </div>
+        </div><hr><hr><hr><hr>
+    </div>
+    <!-- /Services -->
+</div>
+</div>
+<!-- /Full Page Image Header Area -->
+
+<!-- Intro -->
+<div id="about" class="intro">
+    <div class="container">
+        <div class="row" style="color:#666">
+            <div id="quilink" class="col-md-6 col-md-offset-3 text-center lead">
+                    <!--h2 data-lang="quiliMenu">Quilibrium Barcelona</h2>
+                    <p data-lang="name">Experiences &amp; Emotions</p--><br>
+                        <p data-lang="howtolux">The luxury of know-how – Premium Concierge Services</p>
+                        <p data-lang="bodymind">Body &amp; Mind Care – Receptive Travels</p>
+                        <a target="_blank" href="http://www.quilibriumbarcelona.com"><img width="100%" src="content/img/header.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Intro -->
+        <div>
+
+          <div class="jumbotron services">
+
+            <div class="bcn">
+                <div class="vert-text lead" style="background-color:black;opacity:.5">
+                    <hr>
+                    <br><br><br>
+                    <h2 data-lang="explore1">Explore Barcelona</h2>
+                        <!--h2>&amp;</h2>
+                        <h1 data-lang="explore2">Discover Catalonia</h1></a-->
+                        <br><br>
+                        <br><br>
+                        <hr>
+                    </div>
+                </div>
+                <div class="container brand"><br><br>
+                    <!--h1 data-lang="luxury0" style="margin-left:64px">Luxury service</h1><br-->
+                    <div class="row description">
+                        <h2 data-lang="luxuryTitle">Big moments, small details. Or small moments, big details.</h2>
+                        <h2 data-lang="luxuryTitle2" class="pull-right">Or small moments, big details.</h2>
+                        <br><hr><br>
+                        <p data-lang="luxury1">True luxury is to feel free enjoying life with intensity. From this precept, The Concierge QB offers you to develop a customized proposal of exclusive Premium services that will make your stay in Barcelona more easy, comfortable and satisfactory.
+                          Big moments, little details. Or small moments, great details. You choose and The Concierge QB proposes, organizes and ensures that everything flows in a full and satisfactory manner.</p><hr>
+                          <!--p data-lang="luxury2">The Concierge at Quilibrium are by your side 24/7, 365 days a year, accompanying you in your language. We provide a high-level service to those who are not satisfied with standard services.<br>At Quilibrium we provide unique experiences and emotions for families, individuals, couples, corporate or small groups. We are also specialized in senior services, because we understand their special requirements and needs.Each celebration is unique and special, and so we specially design packages for family meetings, private parties, romantic weekends, birthday parties, weddings, weekend breaks and corporate events.<br>Quilibrium Barcelona is a team of proactive, understanding, passionate, creative, responsible and highly motivated professionals when dealing with people.</p><hr>
+                          <p data-lang="luxury3">With the overall growth in travel and tourism there is an increasing need for high-level service for outbound business and leisure travellers. Quilibrium was founded to meet those needs.
+                            <br>Carolina Picas is the director of Quilibrium Barcelona. She is born in Barcelona and passionate about the health and wellbeing of people. Carolina is sensitive and intuitive, a good organizer and detail oriented.
+                            <br>We are an agency specializing in making your life easier and more comfortable while in Spain. The whole experience, through an exquisite and exclusive, highly professional Concierge service, which is both efficient and discreet, all in your language.</p-->
+                        </div></div>
+                        <!-- a href="#contact" class="btn btn-default btn-lg pull-right">Contact now!</a-->
+                    </div>
+                </div>
+                <!-- Callout -->
+    <!--div class="jumbotron services">
+        <div class="container">
+            <div class="row">
+              <h1>Luxury service</h1>
+              <p>True luxury is to feel free enjoying life with intensity. From this precept, The Concierge QB offers you to develop a customized proposal of exclusive Premium services that will make your stay in Barcelona more easy, comfortable and satisfactory.
+            Big moments, little details. Or small moments, great details. You choose and The Concierge QB proposes, organizes and ensures that everything flows in a full and satisfactory manner.</p>
+               <p>The Concierge QB is by your side 24 hours a day, 365 days a year, accompanying you in your language.</p>
+            </div>
+            <a href="#contact" class="btn btn-default btn-lg pull-right">Contact now!</a>
+        </div>
+    </div-->
+    <!-- /Callout -->
+
+
+    <div id="suggestions">
+        <div class="container">
+            <div class="row"><br><br>
+                <div class="col-md-4 col-md-offset-4 text-center" style="color:black">
+                    <h2 data-lang="checkBoards">Check our boards!</h2>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/barcelona-places-to-visit/" data-pin-scale-width="115" data-pin-scale-height="300">Barcelona</a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/quilibrium-marbella/" data-pin-scale-width="115" data-pin-scale-height="300">Marbella</a>
+                </div>
+                <div class="col-md-4 text-center">
+                  <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/quilibrium-madrid/" data-pin-scale-width="115" data-pin-scale-height="300">Madrid</a>
+              </div><br>
+                    <div class="row">
+                      <div class="col-md-6 text-center">
+                        <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/quilibrium-balearic-islands/" data-pin-scale-width="180" data-pin-scale-height="400">Balearic Islands</a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/quilibrium-canary-islands/" data-pin-scale-width="180" data-pin-scale-height="400">Canary Islands</a>
+                    </div><br>
+                </div>
+              <div>
+                  <div id="sea">
+                <div class="row">
+                <div class="col-md-4 text-center">
+                    <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/lets-go-to-the-country/" data-pin-scale-width="115" data-pin-scale-height="300">Let's go to the country!</a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/near-the-sea/" data-pin-scale-width="115" data-pin-scale-height="300">Near the sea</a>
+                </div>
+                  <div class="col-md-4 text-center">
+                      <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/up-in-the-air/" data-pin-scale-width="115" data-pin-scale-height="300">Up in the air!</a>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6 text-center">
+                      <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/time-to-eat" data-pin-scale-width="180" data-pin-scale-height="400">Mediterranean gastronomy</a>
+                  </div>
+                      <div class="col-md-6 text-center">
+                          <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/relax-take-it-easy/" data-pin-scale-width="180" data-pin-scale-height="400">Relax &amp; take it easy</a>
+                      </div><br>
+                <div class="col-md-4 text-center">
+                    <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/modernisme-art-nouveau/" data-pin-scale-width="115" data-pin-scale-height="300">Art nouveau</a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/catalonias-history/" data-pin-scale-width="115" data-pin-scale-height="300">Catalonia's history</a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a data-pin-do="embedBoard" href="http://www.pinterest.com/quilibriumbcn/culture-and-traditions/" data-pin-scale-width="115" data-pin-scale-height="300">Culture &amp; Traditions</a>
+                </div>
+            </div>
+        </div>
+        <!--a id="pins" class="more pull-right" href="javascript:;">
+          <h2><i class="fa fa-plus"></i></h2>
+      </a-->
+      <br><br>
+      <a href="#" class="btn btn-info btn-lg bop pull-right" data-toggle="modal" data-target="#contactModal"><i class="fa fa-envelope"></i> <span data-lang="concierge">Simple message</span> </a>
+  </div>
+</div><br>
+</div>
+</div>
+
+<!-- Portfolio -->
+<div id="places" class="portfolio browng">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <h2 data-lang="places">Fantastic places</h2>
+                <hr>
+            </div>
+        </div>
+        <div id="carousel-example-generic" class="carousel slide  col-md-offset-1" data-ride="carousel" style="height:520px">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3" class=""></li>
+            <li data-target="#carousel-example-generic" data-slide-to="4" class=""></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <div class="item">
+              <img alt src="content/img/caro_2.png" data-holder-rendered="true">
+          </div>
+          <div class="item">
+              <img alt src="content/img/place-4.png" data-holder-rendered="true">
+          </div>
+          <div class="item">
+              <img alt src="content/img/palace-4.jpg" data-holder-rendered="true">
+          </div>
+            <div class="item active">
+              <img alt src="content/img/caro_1.png" data-holder-rendered="true">
+          </div>
+          <div class="item">
+              <img alt src="content/img/luxury_2.jpg" data-holder-rendered="true">
+          </div>
+      </div>
+              <!--a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a-->
+        </div>
+        <div id="majestic" class="row">
+            <div class="col-md-3 text-center">
+                <div class="portfolio-item">
+                    <a href="javascript:;">
+                        <img class="img-portfolio img-responsive" src="content/img/place-3.jpg" data-title="" data-caption="Quilibrium Barcelona Experiences &amp; Emotions">
+                    </a>
+                    <h4 data-lang="gardens">Beautiful gardens</h4>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="portfolio-item">
+                    <a href="javascript:;">
+                        <img class="img-portfolio img-responsive" src="content/img/luxury_1.jpg" data-title="" data-caption="Quilibrium Barcelona Experiences &amp; Emotions">
+                    </a>
+                    <h4 data-lang="wellness">Evening shows</h4>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="portfolio-item">
+                    <a href="javascript:;">
+                        <img class="img-portfolio img-responsive" src="content/img/palace-1.jpg" data-title="" data-caption="Quilibrium Barcelona Experiences &amp; Emotions">
+                    </a>
+                    <h4 data-lang="awesome">Manor wellness</h4>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="portfolio-item">
+                    <a href="javascript:;">
+                        <img class="img-portfolio img-responsive" src="content/img/place-1.jpg" data-title="" data-caption="Quilibrium Barcelona Experiences &amp; Emotions">
+                    </a>
+                    <h4 data-lang="shows">Luxury at your disposal!</h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /Portfolio -->
+    <div id="corporate" class="container">
+        <div><br>
+          <!-- Callout -->
+          <div class="callout">
+              <div class="vert-text">
+                  <hr>
+                  <a href="#contact" style="color:#DDD;text-decoration:none"><h1 data-lang="over">... come over the Palace</h1></a>
+                  <hr>
+              </div>
+          </div>
+          <!-- /Callout -->
+
+          <div id="activities" class="portfolio browng">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4 text-center">
+                        <h2 data-lang="plans">Perfect plans</h2>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <div class="portfolio-item">
+                            <a href="javascript:;">
+                                <img class="img-portfolio img-responsive" src="content/img/activity-1.jpg">
+                            </a>
+                            <h4 data-lang="flavors">Taste the genuine flavors</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="portfolio-item">
+                            <a href="javascript:;">
+                                <img class="img-portfolio img-responsive" src="content/img/activity-5.jpg">
+                            </a>
+                            <h4 data-lang="awesome">Awesome celebrations</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="portfolio-item">
+                            <a href="javascript:;">
+                                <img class="img-portfolio img-responsive" src="content/img/space_3.jpg">
+                            </a>
+                            <h4 data-lang="jets">Private jets</h4>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <div class="portfolio-item">
+                            <a href="javascript:;">
+                                <img class="img-portfolio img-responsive" src="content/img/activity-6.jpg">
+                            </a>
+                            <h4 data-lang="sailing">Boat sailing</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="portfolio-item">
+                            <a href="javascript:;">
+                                <img class="img-portfolio img-responsive" src="content/img/activity-3.jpg">
+                            </a>
+                            <h4 data-lang="exceptional">Exceptional palaces</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="portfolio-item">
+                            <a href="javascript:;">
+                                <img class="img-portfolio img-responsive" src="http://www.mastertrackdays.com/images_1/telemetry.jpg">
+                            </a>
+                            <h4 data-lang="circuit">Circuit track</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="plans">
+            <div class="container">
+                <div class="row">
+                    <div class="list-group col-md-4">
+                       <a href="#contact" class="list-group-item active">
+                          <h4  data-lang="transports" class="list-group-item-heading">
+                            Medios de transporte
+                        </h4>
+                        <p  data-lang="experiences" class="list-group-item-heading">
+                            Experiencias y emociones de lujo.
+                        </p>
+                    </a>
+                    <a href="#contact" class="list-group-item">
+                      <h4 data-lang="helicoptes" class="list-group-item-heading">
+                        Helicópteros <span style="color:lightgray"> | </span> Jets privados
+                    </h4>
+                </a>
+                <a href="#contact" class="list-group-item">
+                  <h4 data-lang="cars" class="list-group-item-heading">
+                    Coches exclusivos y de Lujo
+                </h4>
+            </a>
+            <a href="#contact" class="list-group-item">
+              <h4 data-lang="limusins" class="list-group-item-heading">
+                Limusinas <span style="color:lightgray"> | </span> 4x4 <span style="color:lightgray"> | </span> descapotables
+            </h4>
+        </a>
+        <a href="#contact" class="list-group-item">
+          <h4 data-lang="vehicles" class="list-group-item-heading">
+             Alquiler de vehículos con y sin chofer
+         </h4>
+     </a>
+     <a href="#contact" class="list-group-item">
+      <h4 data-lang="minibus" class="list-group-item-heading">
+        Minibuses para desplazamiento de grupos
+    </h4>
+</a>
+</div>
+<div class="list-group col-md-4">
+   <a href="#contact" class="list-group-item active list-group-item-warning">
+      <h4 data-lang="takeCorporate" class="list-group-item-heading">
+        Cuide de usted y los suyos
+    </h4>
+    <p data-lang="nearWhat" class="list-group-item-heading">
+        Siempre muy cerca de usted, atentos para ayudarle.
+    </p>
+    </a>
+    <a href="#contact" class="list-group-item">
+      <h4 data-lang="treatmentBusiness" class="list-group-item-heading">
+        Control de salud <span style="color:lightgray"> | </span> Babysitter
+    </h4>
+    </a>
+    <a href="#contact" class="list-group-item">
+      <h4 data-lang="medicalEvents" class="list-group-item-heading">
+       Tratamientos Estéticos y de Belleza
+    </h4>
+    </a>
+    <a href="#contact" class="list-group-item">
+      <h4 data-lang="medicalTeam" class="list-group-item-heading">
+        Desplazamientos con asistencia médica
+    </h4>
+    </a>
+    <a href="#contact" class="list-group-item">
+      <h4 data-lang="medicalTrips" class="list-group-item-heading">
+        Dietista <span style="color:lightgray"> | </span> nutricionista <span style="color:lightgray"> | </span> wellness <span style="color:lightgray"> | </span> masaje
+    </h4>
+    </a>
+    <a href="#contact" class="list-group-item">
+      <h4 data-lang="medicalProduct" class="list-group-item-heading">
+        Osteopatía <span style="color:lightgray"> | </span> Aromaterapia <span style="color:lightgray"> | </span> Quiromasaje
+    </h4>
+    </a>
+</div>
+<div class="list-group col-md-4">
+   <a href="#contact" class="list-group-item active list-group-item-warning">
+      <h4 data-lang="sport" class="list-group-item-heading">
+        Sport Experiences and hobbies
+    </h4>
+    <p data-lang="what" class="list-group-item-heading">
+        What'd you like?
+        </p>
+    </a>
+    <a href="#contact" class="list-group-item">
+      <h4 data-lang="driving" class="list-group-item-heading">
+        Supercar driving experience
+    </h4>
+    </a>
+    <a href="#contact" class="list-group-item">
+      <h4 data-lang="quad" class="list-group-item-heading">
+       Rural Quad experience
+    </h4>
+    </a>
+    <a href="#contact" class="list-group-item">
+      <h4 data-lang="globus" class="list-group-item-heading">
+        Ballon experiences
+    </h4>
+    </a>
+    <a href="#contact" class="list-group-item">
+      <h4 data-lang="experienceCar" class="list-group-item-heading">
+        4x4 &amp; F1 Driving Experiences
+    </h4>
+    </a>
+    <a href="#contact" class="list-group-item">
+      <h4 data-lang="rutes" class="list-group-item-heading">
+        Rutas y cata de vinos a caballos
+    </h4>
+    </a>
+</div>
+</div>
+</div><br>
+</div>
+</div>
+<!-- a class="more pull-right" href="javascript:;">
+    <h2><i class="fa fa-plus"></i></h2>
+</a -->
+</div>
+</div>
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel" data-lang="contact">Contact us</h4>
+    </div>
+    <div class="modal-body">
+        <iframe allowTransparency="true" style="min-height:390px; height:inherit; overflow:hidden;" width="100%" id="contactform123" name="contactform123" marginwidth="0" marginheight="0" frameborder="0" src="http://www.123contactform.com/my-contact-form-VilàPicasAlbert-1230046.html">
+            <p>Your browser does not support iframes. The contact form cannot be displayed. Please use another contact method (phone, fax etc)</p>
+        </iframe>
+        <a href="tel:+34648158914" class="btn btn-primary btn-md pull-right"><i class="fa fa-phone"></i> +34 648 158 914</a>
+        <div class="well" style="color:black">
+            <p>Beethoven 15, 4º</p>
+            <strong>Barcelona – 08021</strong>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+</div>
+</div>
+</div>
+<!-- /Map -->
+
+<!-- Call to Action -->
+<footer class="jumbotron">
+<!-- Map -->
+<div id="contact" class="container">
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <br>
+            <h2  data-lang="contact" style="color:black">Contact now!</h2><br>
+            <a href="#" class="btn btn-info btn-lg bop" data-toggle="modal" data-target="#contactModal"><i class="fa fa-envelope"></i> <span data-lang="concierge">Simple message</span> </a><br><br>
+            <a href="tel:+34648158914" class="btn btn-info btn-lg bop"><i class="fa fa-phone"></i> +34 648 158 914</a>
+            <hr>
+            <ul class="list-inline">
+                <li><a href="http://www.quilibriumbarcelona.com"><i class="fa fa-globe fa-3x"></i></a>
+                </li>
+                <li><a target="_blank" href="mailto:info@quilibriumbarcelona.com"><i class="fa fa-envelope-square fa-3x"></i></a>
+                </li>
+                <li><a target="_blank" href="https://twitter.com/QuilibriumBCN"><i class="fa fa-twitter-square fa-3x"></i></a>
+                </li>
+                <li><a target="_blank" href="https://www.facebook.com/pages/Quilibrium-Barcelona/266954430005640"><i class="fa fa-facebook-square fa-3x"></i></a>
+                </li>
+                <li><a target="_blank" href="https://www.linkedin.com/company/1949818"><i class="fa fa-linkedin-square fa-3x"></i></a>
+                </li>
+                <li><a target="_blank" href="http://www.pinterest.com/quilibriumbcn/"><i class="fa fa-pinterest-square fa-3x"></i></a>
+                </li>
+                <li><a href="tel:+34648158914"><i class="fa fa-phone-square fa-3x"></i></a>
+                </li>
+            </ul>
+              <hr>
+              <p style="color:black">E&amp;E &copy; Quilibrium Barcelona 2014</p><br>
+              <!--a href="tel:+34648158914" class="btn btn-default btn-lg bop"><i class="fa fa-phone fa-2x"> </i><br><br> +34 648 158 914 </a-->
+          </div>
+
+            <div class="map col-md-4">
+                <!--div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <div class="typeform-widget" data-url="https://a22.typeform.com/to/vNLsvP" data-text="Contact" style="width:100%;height:540px;border:1"></div>
+                        <script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'widget.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+                    </div>
+
+                </div-->
+              <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Barcelona,Beethoven,+15+4º&amp;aq=0&amp;oq=catalonia&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Catalunya&amp;t=m&amp;z=6&amp;iwloc=A&amp;output=embed"></iframe>
+              <br>
+              <small>
+                  <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Barcelona,Beethoven,+15+4º&amp;aq=0&amp;oq=catalonia&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Catalunya&amp;t=m&amp;z=6&amp;iwloc=A"></a>
+              </small>
+            </div>
+      </div>
+  </div>
+</footer>
+<!-- /call-to-action -->
+<!-- /Footer -->
+<!-- JavaScript -->
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/intense.min.js"></script>
+
+<!-- Custom JavaScript for the Side Menu and Smooth Scrolling -->
+<script>
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+</script>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+</script>
+<script>
+    window.to = 0;
+    window.console = window.console || { log: function(){} };
+    window.bodyS = $('body');
+    window.mobile = $(document).width() < 500;
+    var qui = $('#quilink'), htqui = qui.html();
+    qui.html('');
+    var bg = $('#top'), bop = $('.bop'),
+    grounds = [ 'content/img/BCN_3.jpg',
+    'content/img/BCN_2.jpg',
+    'content/img/BCN_1.png',
+    'content/img/callout.jpg'], last,
+    contactForm = '<a data-lang="contact" href="#contact" class="btn btn-warning btn-sm pull-right">Contact</a><p></p>';
+        // for (var i = 0; i < bop.length; i++) {
+        //     $(bop[i]).mouseover(function(){
+        //         //bg.css('opacity','0.9');
+        //         bg.css('background-image', 'url("'+grounds[Date.now()%(grounds.length-1)]+'")');
+        //     });
+        // };
+
+            //bg.css('background-image', 'url("'+grounds[2]+'")');
+        //setTimeout(function(){
+            var d = new Date().getHours(), i = 0;
+
+            if (d>15 && d<22) i = 1;
+            else if (d<8 || d>21) i = 2;
+            bg.css('background-image', 'url("'+grounds[i]+'")');
+            if (mobile) {
+                bg.css('background-size','cover');
+                $('.bcn').css('background-size','cover');
+                $('.brand').css('margin-left','18px').css('margin-right','18px');
+                $('#carousel-example-generic').css('height','220px');
+            }
+        //},214);
+var imgs = $('img').not('#logo img');
+imgs.addClass('thumbnail');
+imgs.addClass('intense');
+$('#logo img').addClass('thumbnail');
+$('a').click(function(e){
+    var el = $(this), t = el.attr('href'), hash = t ? t.toString() : '';
+    if (!t) return e.preventDefault();
+    //if (t[0]==='#') e.preventDefault();
+    if (t[0]!=='#' || t.length<2) return;// console.log('DISCARD LINK');
+    // t = $(t).offset();
+    // to = t ? t.top||0 : 0;
+    if (hash) {
+        $('body').animate({
+            scrollTop: $(t).css('top')
+        }, 100).promise().then(function() {
+          console.log("runs once!",t)
+            if (el.hasClass('menu')) $('#menu-close').click();
+            location.hash = hash;
+        });
+            return false;
+    } else return; //console.log('Error with offset',to,t,hash);
+});
+window.init = function(){
+  Intense( imgs );
+  qui.html(htqui);
+};
+$('#top').css('opacity:.84');
+window.changeLang = function(l){
+    contactForm = '<div class="btn-group pull-right"><a data-lang="contact" href="#suggestions" class="btn btn-warning chinaBut btn-sm"> E&E </a><a data-lang="contact" href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#contactModal">'+langs.contact[l]+'</a></div><br><br>';
+    var text = $('[data-lang]'), jq,em,attr;
+    $('#logo').attr('href','mind.php?page_id=9&lang='+(l==='zh' ? 'en' : l));
+    for (var i = 0; i < text.length; i++) {
+        jq = $(text[i]);
+        attr = jq.attr('data-lang');
+                //else {
+                    var t = jq.html().split('  ').join('').split('\n').join(' ').split("'").join("\\'"), href, show;
+                    // if (langs[attr]) console.log('\t, '+attr+': {\n\t\ten: \''+(langs[attr]['en']||t)+'\'\n\t\t, es: \''+(langs[attr]['es']||t)+'\'\n\t\t, ca: \''+(langs[attr]['ca'].split("'").join("\\'")||t)+'\'\n\t\t, ru: \''+(langs[attr]['ru']||t)+'\'\n\t\t, zh: \''+(langs[attr]['zh']||t)+'\'\n\n\t\t, doc: \''+t+'\'\n\t}');
+                    // else 
+                    if (!langs[attr]) console.log('\t, '+attr+': {\n\t\ten: \''+t+'\'\n\t\t, es: \''+t+'\'\n\t\t, ca: \''+t+'\'\n\t\t, ru: \''+t+'\'\n\t\t, zh: \''+t+'\'\n\t\t}');
+                //    if (langs[attr] && langs[attr][l]) jq.html(langs[attr][l]);
+                //}
+                if (langs[attr] && langs[attr][l]) jq.html(langs[attr][l]);
+            };
+            text = $('[data-content]');
+            for (var i = 0; i < text.length; i++) {
+                jq = $(text[i]);
+                attr = jq.data('content');
+                href = jq.data('href');
+                if (href){
+                    show = contactForm.replace('#suggestions',href);
+                } else show = contactForm;
+                if (langs[attr] && langs[attr][l]) jq.attr('data-content',langs[attr][l]+show);
+                attr = jq.attr('title');
+                if (langs[attr] && langs[attr][l]) {
+                    jq.attr('title',langs[attr][l]);
+                    jq.attr('data-original-title',langs[attr][l]);
+                }
+            };
+            text = $('#services a');
+            text.popover({ placement: 'bottom', trigger: 'click', html: true, width: '164px' });
+            jq = $('#expop');
+            em = $('#empop');
+            var mb = 
+            jq.popover({ placement: mobile ? 'bottom' : 'right', trigger: 'click', html: true });
+            em.popover({ placement: mobile ? 'bottom' : 'left', trigger: 'click', html: true });
+            jq.click();
+            em.click();
+            text.click();
+            jq = $('.popover');
+            //jq.css('background-image', '-webkit-gradient(linear,left top,left bottom,color-stop(0%,#FCEEC1),color-stop(100%,#E4BF46))');
+            jq.css('opacity',.81);
+            jq.css('color','black');
+            text.click();
+            $('#expop').click();
+            em.click();
+            function closeLast(){
+                if (last===this) {
+                    last = undefined;
+                    return;
+                }
+                if (last) last.click();
+                last = this;
+            }
+            text.bind('click',closeLast);
+            $('#expop').bind('click',closeLast);
+            em.bind('click',closeLast);
+        }
+          window.language = navigator.language.split('-')[0];
+          var  but=$('#langsBut');
+          for (var i = 0; i < langs.languages.length; i++) {
+            but.append('<li><a class="menu" style="color:black" href="javascript:;" onclick="changeLang(\''+langs.languages[i]+'\')">'+langs.names[i]+'</a></li>');
+            };
+            if (langs.languages.indexOf(language)!=-1){
+                changeLang(language);
+            } else changeLang('en');
+        window.hidePins = setTimeout(function(){
+            init();
+            //$($('#pins').parent().children()[0]).toggle('fast');
+            $('.more').click(function(e){
+              var el = $(this);
+              if (el.attr('href')==='#contact') return;
+              $(el.parent().children()[0]).toggle('fast');
+              var i = el.find('i');
+              i.removeClass('fa-plus');
+              //i.addClass('fa-send');
+              i.html('');
+                      //el.text('Contact us  ');
+                      bodyS.animate({
+                        scrollTop: $(window).scrollTop() + bodyS.height()/2
+                    });
+                      //$('#pin').src('');
+                      //$('#pin').attr('src','http://assets.pinterest.com/js/pinit.js');
+                      setTimeout(function(){
+                          el.attr('href','#contact');
+                      },1000);
+                  });
+            $('[data-pin-log]')
+            .attr('href','http://www.pinterest.com/quilibriumbcn/')
+            .attr('target','_blank').click(function(e){ e.stopImmediatePropagation() });
+        },2800);
+        $('.carousel').carousel({ interval: 3600 });
+    </script>
+    <script id="pin" type="text/javascript" async src="http://assets.pinterest.com/js/pinit.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-51394212-2', 'auto');
+      ga('send', 'pageview');
+
+  </script>
+</body>
+</html>
