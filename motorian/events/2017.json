@@ -1,0 +1,34 @@
+[{
+	"id": "castelloli2",
+	"title": "Next Castellolí",
+	"content": "events/2017/castelloli.md",
+	"date": "14 Mar 2017",
+	"image": "http://www.paintballcastelloli.com/gallery/karting_Castelloli.JPG",
+	"carousel": [
+		"http://mastertrackdays.com/gallery/galleries/201310%20-%20Motorland%20Aragon/17.jpg",
+		"http://mastertrackdays.com/gallery/galleries/201310%20-%20Motorland%20Aragon/18.jpg",
+		"http://mastertrackdays.com/gallery/galleries/201310%20-%20Motorland%20Aragon/7.jpg"
+	]
+},{
+	"id": "montmelo",
+	"title": "Track Montmeló",
+	"content": "events/2017/montmelo.md",
+	"date": "1 Feb 2017",
+	"image": "http://static.panoramio.com/photos/large/180677.jpg",
+	"carousel": [
+		"http://mastertrackdays.com/gallery/galleries/201701%20-%20Circuit%20Calafat/IMG_2878.JPG",
+		"http://mastertrackdays.com/gallery/galleries/201701%20-%20Circuit%20Calafat/IMG_2755.JPG",
+		"http://mastertrackdays.com/gallery/galleries/201701%20-%20Circuit%20Calafat/IMG_2812.JPG"
+	]
+},{
+	"id": "castelloli",
+	"title": "Test Castellolí",
+	"content": "events/2017/castelloli.md",
+	"date": "14 Jan 2017",
+	"image": "http://www.paintballcastelloli.com/gallery/karting_Castelloli.JPG",
+	"carousel": [
+		"http://mastertrackdays.com/gallery/galleries/201310%20-%20Motorland%20Aragon/17.jpg",
+		"http://mastertrackdays.com/gallery/galleries/201310%20-%20Motorland%20Aragon/18.jpg",
+		"http://mastertrackdays.com/gallery/galleries/201310%20-%20Motorland%20Aragon/7.jpg"
+	]
+}]
