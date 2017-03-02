@@ -56,9 +56,9 @@
 	__webpack_require__(14);
 	__webpack_require__(15);
 	__webpack_require__(16);
+	__webpack_require__(17);
 	__webpack_require__(18);
 	__webpack_require__(19);
-	__webpack_require__(20);
 	__webpack_require__(21);
 	__webpack_require__(22);
 	__webpack_require__(23);
@@ -234,7 +234,7 @@
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<ion-view id=\"events-screen\"><ion-nav-title>{{ vm.isPast ? 'PAST' : 'FUTURE' }}</ion-nav-title><ion-content class=\"card-background-page\"><a ng-href=\"#/event/{{ event.id }}\" ng-repeat=\"event in vm.events\"><img ng-src=\"{{ event.image }}\"><div class=\"card-text\"><div class=\"card-title\">{{ event.title }}</div><div class=\"card-subtitle\">{{ event.date }}</div></div></a></ion-content></ion-view>"
+	module.exports = "<ion-view id=\"events-screen\"><ion-nav-title>{{ vm.isPast ? 'PAST' : (vm.showUpdated ? 'UPDATES' : 'FUTURE') }}</ion-nav-title><ion-content class=\"card-background-page\"><a ng-href=\"#/event/{{ event.id }}\" ng-repeat=\"event in vm.events\"><img ng-src=\"{{ event.image }}\"><div class=\"card-text\"><div class=\"card-title\">{{ event.title }}</div><div class=\"card-subtitle\">{{ event.date }}</div></div></a></ion-content></ion-view>"
 
 /***/ },
 /* 7 */
@@ -606,238 +606,109 @@
 /* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/**
+	 * Provides a simple logging system with the possibility of registering log observers.
+	 * In order to track the source module of message logs,
+	 * a customized logger should be instanciated using the getLogger() method just after its injection.
+	 *
+	 * 4 different log levels are provided, via corresponding methods:
+	 * - log: for debug information
+	 * - info: for informative status of the application (success, ...)
+	 * - warning: for non-critical errors that do not prevent normal application behavior
+	 * - error: for critical errors that prevent normal application behavior
+	 *
+	 * Example usage:
+	 * angular.module('myService', ['logger']).factory('myService', function (logger) {
+	 *   logger = logger.getLogger('myService');
+	 *   ...
+	 *   logger.log('something happened');
+	 * }
+	 *
+	 * If you want to disable debug logs in production, add this snippet to your app configuration:
+	 * angular.module('app').config(function ($provide) {
+	 *   // Disable debug logs in production version
+	 *   $provide.decorator('$log', ['$delegate', function($delegate) {
+	 *     if (!debug) {
+	 *       $delegate.log = function() {};
+	 *     }
+	 *     return $delegate;
+	 *   }]);
+	 * });
+	 *
+	 * If you want additional tasks to be performed on log entry (show toast, for example),
+	 * you can register observers using the addObserver() method.
+	 */
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var main_module_1 = __webpack_require__(2);
+	var observers = [];
 	/**
-	 * Displays the about screen.
+	 * Logs a message from the specified source.
+	 * @param {string} message The message to be logged.
+	 * @param {?string=} source The source of the log.
+	 * @param {function} logFunc The base log function to use.
+	 * @param {'log'|'info'|'warning'|'error'} level The log level.
+	 * @param {Object?} options Additional log options.
 	 */
-	var AboutController = (function () {
-	    AboutController.$inject = ["logger", "config"];
-	    function AboutController(logger, config) {
-	        this.logger = logger.getLogger('about');
-	        this.version = config.version;
-	        this.logger.log('init');
+	function log(message, source, logFunc, level, options) {
+	    logFunc(source ? '[' + source + ']' : '', message, '');
+	    angular.forEach(observers, function (observerFunc) {
+	        observerFunc(message, source, level, options);
+	    });
+	}
+	var Logger = (function () {
+	    function Logger($log, moduleName, logFunc) {
+	        this.$log = $log;
+	        this.moduleName = moduleName;
+	        this.logFunc = logFunc;
 	    }
-	    return AboutController;
+	    Logger.prototype.log = function (message, options) {
+	        this.logFunc(message, this.moduleName, this.$log.log, 'log', options);
+	    };
+	    Logger.prototype.info = function (message, options) {
+	        this.logFunc(message, this.moduleName, this.$log.info, 'info', options);
+	    };
+	    Logger.prototype.warning = function (message, options) {
+	        this.logFunc(message, this.moduleName, this.$log.warn, 'warning', options);
+	    };
+	    Logger.prototype.error = function (message, options) {
+	        this.logFunc(message, this.moduleName, this.$log.error, 'error', options);
+	    };
+	    return Logger;
 	}());
-	exports.AboutController = AboutController;
-	main_module_1.default.controller('aboutController', AboutController);
+	var LoggerService = (function () {
+	    LoggerService.$inject = ["$log"];
+	    function LoggerService($log) {
+	        this.$log = $log;
+	    }
+	    /**
+	     * Gets a customized logger based on the given module name.
+	     * @param {string} moduleName The module name.
+	     * @return {Logger} A logger object.
+	     */
+	    LoggerService.prototype.getLogger = function (moduleName) {
+	        return new Logger(this.$log, moduleName, log);
+	    };
+	    /**
+	     * Adds a new observer function that will be called for each new log entry.
+	     * These parameters are passed to the observer function, in order:
+	     * - message {string} message The message to be logged.
+	     * - source {?string=} source The source of the log.
+	     * - level {'log'|'info'|'warning'|'error'} level The log level.
+	     * - options {Object?} options Additional log options.
+	     * @param {!function} observerFunc The observer function.
+	     */
+	    LoggerService.prototype.addObserver = function (observerFunc) {
+	        observers.push(observerFunc);
+	    };
+	    return LoggerService;
+	}());
+	exports.LoggerService = LoggerService;
+	main_module_1.default.service('logger', LoggerService);
 
 
 /***/ },
 /* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var main_module_1 = __webpack_require__(2);
-	/**
-	 * Displays the home screen.
-	 */
-	var EventsController = (function () {
-	    EventsController.$inject = ["logger", "eventService"];
-	    function EventsController(logger, eventService) {
-	        this.isLoading = true;
-	        this.events = [];
-	        this.isPast = location.hash.indexOf('past') > -1;
-	        this.showLast = location.hash.indexOf('updates') > -1;
-	        this.logger = logger.getLogger('events');
-	        this.eventService = eventService;
-	        this.logger.log('init');
-	        var self = this;
-	        eventService.getEvents(this.isPast).then(function (years) {
-	            _.each(years, function (events) {
-	                self.events = self.events.concat(self.showLast ? events : _.filter(events, function (ev) {
-	                    if (!ev.time) {
-	                        ev.time = (new Date(ev.date)).getTime();
-	                    }
-	                    return self.isPast ? ev.time <= Date.now() : ev.time > Date.now();
-	                })).sort(function (a, b) {
-	                    if (self.showLast) {
-	                        a.lastUpdate = a.updated ? (new Date(a.updated)).getTime() : 0;
-	                        b.lastUpdate = b.updated ? (new Date(b.updated)).getTime() : 0;
-	                        return b.lastUpdate - a.lastUpdate;
-	                    }
-	                    return self.isPast ? (b.time - a.time) : (a.time - b.time);
-	                });
-	            });
-	            self.isLoading = eventService.isLoading;
-	        });
-	    }
-	    return EventsController;
-	}());
-	exports.EventsController = EventsController;
-	main_module_1.default.controller('eventsController', EventsController);
-
-
-/***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var main_module_1 = __webpack_require__(2);
-	/**
-	 * Loading directive: displays a loading indicator while data is being loaded.
-	 *
-	 * Example usage: <div ui-loading="isLoading"></div>
-	 * The expected value of the directive attribute is a boolean indicating whether the content
-	 * is still loading or not.
-	 *
-	 * Additional parameter attributes:
-	 * - message: the loading message to display (none by default)
-	 *
-	 * Example: <div ui-loading="isLoading" message="Loading..."></div>
-	 */
-	var LoadingDirective = (function () {
-	    function LoadingDirective() {
-	        this.restrict = 'A';
-	        this.template = __webpack_require__(17);
-	        this.scope = {
-	            message: '<',
-	            isLoading: '<uiLoading'
-	        };
-	    }
-	    return LoadingDirective;
-	}());
-	exports.LoadingDirective = LoadingDirective;
-	main_module_1.default.directive('uiLoading', function () { return new LoadingDirective(); });
-
-
-/***/ },
-/* 17 */
-/***/ function(module, exports) {
-
-	module.exports = "<div ng-show=\"isLoading\" class=\"ui-loading text-center\"><ion-spinner icon=\"crescent\"></ion-spinner><span>{{message}}</span></div>"
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var main_module_1 = __webpack_require__(2);
-	/**
-	 * Event service: allows to get events of the year.
-	 */
-	var EventService = (function () {
-	    EventService.$inject = ["$q", "restService", "contextService"];
-	    function EventService($q, restService, contextService) {
-	        this.$q = $q;
-	        this.restService = restService;
-	        this.contextService = contextService;
-	        this.isLoading = true;
-	        this.events = [];
-	        this.eventsMap = {};
-	        this.data = null;
-	        this.year = (new Date()).getFullYear();
-	        this.ROUTES = {
-	            events: 'events/:year.json'
-	        };
-	        this.data = this.$q.all([
-	            this.getYearEvents({ year: this.year }),
-	            this.getYearEvents({ year: this.year + 1 }),
-	            this.getYearEvents({ year: this.year + 2 }),
-	            this.getYearEvents({ year: this.year - 1 }),
-	            this.getYearEvents({ year: this.year - 2 })
-	        ]);
-	    }
-	    EventService.prototype.getEvent = function (event) {
-	        var self = this;
-	        this.isLoading = true;
-	        return this.data.then(function () {
-	            return self.eventsMap[event.id];
-	        })
-	            .finally(function () {
-	            self.isLoading = false;
-	        });
-	    };
-	    EventService.prototype.getEvents = function (isPast) {
-	        var self = this;
-	        this.isLoading = true;
-	        return this.data.then(function (years) { return years; })
-	            .finally(function () {
-	            self.isLoading = false;
-	        });
-	    };
-	    /**
-	     * Get events of a year.
-	     * Used context properties:
-	     * - year: the event's year: 2017, 2018...
-	     * @param {!Object} context The context to use.
-	     * @return {Object} The promise.
-	     */
-	    EventService.prototype.getYearEvents = function (context) {
-	        var self = this;
-	        return self.restService
-	            .get(this.contextService.inject(self.ROUTES.events, context), null, true)
-	            .then(function (response) {
-	            if (response.data) {
-	                _.each(response.data, function (ev) { self.eventsMap[ev.id] = ev; });
-	                return response.data;
-	            }
-	            return self.$q.reject();
-	        })
-	            .catch(function () {
-	            return 'Error, could not load events :-(';
-	        });
-	    };
-	    return EventService;
-	}());
-	exports.EventService = EventService;
-	main_module_1.default.service('eventService', EventService);
-
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var main_module_1 = __webpack_require__(2);
-	/**
-	 * Quote service: allows to get quote of the day.
-	 */
-	var QuoteService = (function () {
-	    QuoteService.$inject = ["$q", "restService", "contextService"];
-	    function QuoteService($q, restService, contextService) {
-	        this.$q = $q;
-	        this.restService = restService;
-	        this.contextService = contextService;
-	        this.ROUTES = {
-	            randomJoke: '/jokes/random?escape=javascript&limitTo=[:category]'
-	        };
-	    }
-	    /**
-	     * Get a random Chuck Norris joke.
-	     * Used context properties:
-	     * - category: the joke's category: 'nerdy', 'explicit'...
-	     * @param {!Object} context The context to use.
-	     * @return {Object} The promise.
-	     */
-	    QuoteService.prototype.getRandomJoke = function (context) {
-	        var _this = this;
-	        return this.restService
-	            .get(this.contextService.inject(this.ROUTES.randomJoke, context), null, true)
-	            .then(function (response) {
-	            if (response.data && response.data.value) {
-	                return response.data.value.joke;
-	            }
-	            return _this.$q.reject();
-	        })
-	            .catch(function () {
-	            return 'Error, could not load joke :-(';
-	        });
-	    };
-	    return QuoteService;
-	}());
-	exports.QuoteService = QuoteService;
-	main_module_1.default.service('quoteService', QuoteService);
-
-
-/***/ },
-/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1088,112 +959,30 @@
 
 
 /***/ },
-/* 21 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * Provides a simple logging system with the possibility of registering log observers.
-	 * In order to track the source module of message logs,
-	 * a customized logger should be instanciated using the getLogger() method just after its injection.
-	 *
-	 * 4 different log levels are provided, via corresponding methods:
-	 * - log: for debug information
-	 * - info: for informative status of the application (success, ...)
-	 * - warning: for non-critical errors that do not prevent normal application behavior
-	 * - error: for critical errors that prevent normal application behavior
-	 *
-	 * Example usage:
-	 * angular.module('myService', ['logger']).factory('myService', function (logger) {
-	 *   logger = logger.getLogger('myService');
-	 *   ...
-	 *   logger.log('something happened');
-	 * }
-	 *
-	 * If you want to disable debug logs in production, add this snippet to your app configuration:
-	 * angular.module('app').config(function ($provide) {
-	 *   // Disable debug logs in production version
-	 *   $provide.decorator('$log', ['$delegate', function($delegate) {
-	 *     if (!debug) {
-	 *       $delegate.log = function() {};
-	 *     }
-	 *     return $delegate;
-	 *   }]);
-	 * });
-	 *
-	 * If you want additional tasks to be performed on log entry (show toast, for example),
-	 * you can register observers using the addObserver() method.
-	 */
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var main_module_1 = __webpack_require__(2);
-	var observers = [];
 	/**
-	 * Logs a message from the specified source.
-	 * @param {string} message The message to be logged.
-	 * @param {?string=} source The source of the log.
-	 * @param {function} logFunc The base log function to use.
-	 * @param {'log'|'info'|'warning'|'error'} level The log level.
-	 * @param {Object?} options Additional log options.
+	 * Displays the about screen.
 	 */
-	function log(message, source, logFunc, level, options) {
-	    logFunc(source ? '[' + source + ']' : '', message, '');
-	    angular.forEach(observers, function (observerFunc) {
-	        observerFunc(message, source, level, options);
-	    });
-	}
-	var Logger = (function () {
-	    function Logger($log, moduleName, logFunc) {
-	        this.$log = $log;
-	        this.moduleName = moduleName;
-	        this.logFunc = logFunc;
+	var AboutController = (function () {
+	    AboutController.$inject = ["logger", "config"];
+	    function AboutController(logger, config) {
+	        this.logger = logger.getLogger('about');
+	        this.version = config.version;
+	        this.logger.log('init');
 	    }
-	    Logger.prototype.log = function (message, options) {
-	        this.logFunc(message, this.moduleName, this.$log.log, 'log', options);
-	    };
-	    Logger.prototype.info = function (message, options) {
-	        this.logFunc(message, this.moduleName, this.$log.info, 'info', options);
-	    };
-	    Logger.prototype.warning = function (message, options) {
-	        this.logFunc(message, this.moduleName, this.$log.warn, 'warning', options);
-	    };
-	    Logger.prototype.error = function (message, options) {
-	        this.logFunc(message, this.moduleName, this.$log.error, 'error', options);
-	    };
-	    return Logger;
+	    return AboutController;
 	}());
-	var LoggerService = (function () {
-	    LoggerService.$inject = ["$log"];
-	    function LoggerService($log) {
-	        this.$log = $log;
-	    }
-	    /**
-	     * Gets a customized logger based on the given module name.
-	     * @param {string} moduleName The module name.
-	     * @return {Logger} A logger object.
-	     */
-	    LoggerService.prototype.getLogger = function (moduleName) {
-	        return new Logger(this.$log, moduleName, log);
-	    };
-	    /**
-	     * Adds a new observer function that will be called for each new log entry.
-	     * These parameters are passed to the observer function, in order:
-	     * - message {string} message The message to be logged.
-	     * - source {?string=} source The source of the log.
-	     * - level {'log'|'info'|'warning'|'error'} level The log level.
-	     * - options {Object?} options Additional log options.
-	     * @param {!function} observerFunc The observer function.
-	     */
-	    LoggerService.prototype.addObserver = function (observerFunc) {
-	        observers.push(observerFunc);
-	    };
-	    return LoggerService;
-	}());
-	exports.LoggerService = LoggerService;
-	main_module_1.default.service('logger', LoggerService);
+	exports.AboutController = AboutController;
+	main_module_1.default.controller('aboutController', AboutController);
 
 
 /***/ },
-/* 22 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1221,6 +1010,227 @@
 	}());
 	exports.EventController = EventController;
 	main_module_1.default.controller('eventController', EventController);
+
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var main_module_1 = __webpack_require__(2);
+	/**
+	 * Displays the home screen.
+	 */
+	var EventsController = (function () {
+	    EventsController.$inject = ["logger", "eventService"];
+	    function EventsController(logger, eventService) {
+	        this.isLoading = true;
+	        this.events = [];
+	        this.isPast = location.hash.indexOf('past') > -1;
+	        this.showUpdated = location.hash.indexOf('updates') > -1;
+	        this.logger = logger.getLogger('events');
+	        this.eventService = eventService;
+	        this.logger.log('init');
+	        var self = this;
+	        eventService.getEvents(this.isPast).then(function (years) {
+	            _.each(years, function (events) {
+	                self.events = self.events.concat(_.filter(events, function (ev) {
+	                    if (self.showUpdated) {
+	                        if (!ev.updated) {
+	                            return false;
+	                        }
+	                        if (!ev.lastUpdate) {
+	                            ev.lastUpdate = (new Date(ev.updated)).getTime();
+	                        }
+	                        if ((Date.now() - ev.lastUpdate) > 172800000) {
+	                            return false;
+	                        }
+	                        return true;
+	                    }
+	                    if (!ev.time) {
+	                        ev.time = (new Date(ev.date)).getTime();
+	                    }
+	                    return self.isPast ? ev.time <= Date.now() : ev.time > Date.now();
+	                })).sort(function (a, b) {
+	                    if (self.showUpdated) {
+	                        return b.lastUpdate - a.lastUpdate;
+	                    }
+	                    return self.isPast ? (b.time - a.time) : (a.time - b.time);
+	                });
+	            });
+	            self.isLoading = eventService.isLoading;
+	        });
+	    }
+	    return EventsController;
+	}());
+	exports.EventsController = EventsController;
+	main_module_1.default.controller('eventsController', EventsController);
+
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var main_module_1 = __webpack_require__(2);
+	/**
+	 * Loading directive: displays a loading indicator while data is being loaded.
+	 *
+	 * Example usage: <div ui-loading="isLoading"></div>
+	 * The expected value of the directive attribute is a boolean indicating whether the content
+	 * is still loading or not.
+	 *
+	 * Additional parameter attributes:
+	 * - message: the loading message to display (none by default)
+	 *
+	 * Example: <div ui-loading="isLoading" message="Loading..."></div>
+	 */
+	var LoadingDirective = (function () {
+	    function LoadingDirective() {
+	        this.restrict = 'A';
+	        this.template = __webpack_require__(20);
+	        this.scope = {
+	            message: '<',
+	            isLoading: '<uiLoading'
+	        };
+	    }
+	    return LoadingDirective;
+	}());
+	exports.LoadingDirective = LoadingDirective;
+	main_module_1.default.directive('uiLoading', function () { return new LoadingDirective(); });
+
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	module.exports = "<div ng-show=\"isLoading\" class=\"ui-loading text-center\"><ion-spinner icon=\"crescent\"></ion-spinner><span>{{message}}</span></div>"
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var main_module_1 = __webpack_require__(2);
+	/**
+	 * Event service: allows to get events of the year.
+	 */
+	var EventService = (function () {
+	    EventService.$inject = ["$q", "restService", "contextService"];
+	    function EventService($q, restService, contextService) {
+	        this.$q = $q;
+	        this.restService = restService;
+	        this.contextService = contextService;
+	        this.isLoading = true;
+	        this.events = [];
+	        this.eventsMap = {};
+	        this.data = null;
+	        this.year = (new Date()).getFullYear();
+	        this.ROUTES = {
+	            events: 'events/:year.json'
+	        };
+	        this.data = this.$q.all([
+	            this.getYearEvents({ year: this.year }),
+	            this.getYearEvents({ year: this.year + 1 }),
+	            this.getYearEvents({ year: this.year + 2 }),
+	            this.getYearEvents({ year: this.year - 1 }),
+	            this.getYearEvents({ year: this.year - 2 })
+	        ]);
+	    }
+	    EventService.prototype.getEvent = function (event) {
+	        var self = this;
+	        this.isLoading = true;
+	        return this.data.then(function () {
+	            return self.eventsMap[event.id];
+	        })
+	            .finally(function () {
+	            self.isLoading = false;
+	        });
+	    };
+	    EventService.prototype.getEvents = function (isPast) {
+	        var self = this;
+	        this.isLoading = true;
+	        return this.data.then(function (years) { return years; })
+	            .finally(function () {
+	            self.isLoading = false;
+	        });
+	    };
+	    /**
+	     * Get events of a year.
+	     * Used context properties:
+	     * - year: the event's year: 2017, 2018...
+	     * @param {!Object} context The context to use.
+	     * @return {Object} The promise.
+	     */
+	    EventService.prototype.getYearEvents = function (context) {
+	        var self = this;
+	        return self.restService
+	            .get(this.contextService.inject(self.ROUTES.events, context), null, true)
+	            .then(function (response) {
+	            if (response.data) {
+	                _.each(response.data, function (ev) { self.eventsMap[ev.id] = ev; });
+	                return response.data;
+	            }
+	            return self.$q.reject();
+	        })
+	            .catch(function () {
+	            return 'Error, could not load events :-(';
+	        });
+	    };
+	    return EventService;
+	}());
+	exports.EventService = EventService;
+	main_module_1.default.service('eventService', EventService);
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var main_module_1 = __webpack_require__(2);
+	/**
+	 * Quote service: allows to get quote of the day.
+	 */
+	var QuoteService = (function () {
+	    QuoteService.$inject = ["$q", "restService", "contextService"];
+	    function QuoteService($q, restService, contextService) {
+	        this.$q = $q;
+	        this.restService = restService;
+	        this.contextService = contextService;
+	        this.ROUTES = {
+	            randomJoke: '/jokes/random?escape=javascript&limitTo=[:category]'
+	        };
+	    }
+	    /**
+	     * Get a random Chuck Norris joke.
+	     * Used context properties:
+	     * - category: the joke's category: 'nerdy', 'explicit'...
+	     * @param {!Object} context The context to use.
+	     * @return {Object} The promise.
+	     */
+	    QuoteService.prototype.getRandomJoke = function (context) {
+	        var _this = this;
+	        return this.restService
+	            .get(this.contextService.inject(this.ROUTES.randomJoke, context), null, true)
+	            .then(function (response) {
+	            if (response.data && response.data.value) {
+	                return response.data.value.joke;
+	            }
+	            return _this.$q.reject();
+	        })
+	            .catch(function () {
+	            return 'Error, could not load joke :-(';
+	        });
+	    };
+	    return QuoteService;
+	}());
+	exports.QuoteService = QuoteService;
+	main_module_1.default.service('quoteService', QuoteService);
 
 
 /***/ },
