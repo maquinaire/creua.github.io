@@ -59,8 +59,8 @@
 	__webpack_require__(17);
 	__webpack_require__(18);
 	__webpack_require__(19);
+	__webpack_require__(20);
 	__webpack_require__(21);
-	__webpack_require__(22);
 	__webpack_require__(23);
 	module.exports = __webpack_require__(24);
 
@@ -234,13 +234,13 @@
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<ion-view id=\"events-screen\"><ion-nav-title>{{ vm.isPast ? 'PAST' : (vm.showUpdated ? 'UPDATES' : 'FUTURE') }}</ion-nav-title><ion-content class=\"card-background-page\"><a ng-href=\"#/event/{{ event.id }}\" ng-repeat=\"event in vm.events\"><img ng-src=\"{{ event.image }}\"><div class=\"card-text\"><div class=\"card-title\">{{ event.title }}</div><div class=\"card-subtitle\">{{ event.date }}</div></div></a></ion-content></ion-view>"
+	module.exports = "<ion-view id=\"events-screen\"><ion-nav-title>{{ vm.isPast ? 'PAST' : (vm.showUpdated ? 'UPDATES' : 'FUTURE') }}</ion-nav-title><ion-content><div class=\"card-background-page\"><a ng-href=\"#/event/{{ event.id }}\" ng-repeat=\"event in vm.events\"><img ng-src=\"{{ event.image }}\"><div class=\"card-text\"><div class=\"card-title\">{{ event.title }}</div><div class=\"card-subtitle\">{{ event.date }}</div></div></a></div></ion-content></ion-view>"
 
 /***/ },
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "<ion-view id=\"event-screen\"><ion-nav-title>{{ vm.event.title}}</ion-nav-title><ion-content><ion-list type=\"card\"><ion-item class=\"text-center\" ng-if=\"!mv.isLoading\" ng-cloak><img ng-src=\"{{ vm.event.image }}\"><h2><i class=\"icon ion-sun\"></i> <span no-translate>{{ vm.event.title}}</span></h2><p><span no-translate>Date:</span> {{vm.event.date}} <span ng-if=\"vm.event.updated\">(Edited {{vm.event.updated}})</span></p></ion-item></ion-list><div class=\"text\"><p>The circuit hosted the first race only five days after the inauguration. The MotoGP Grand Prix was included the following season into the sports calendar of the Circuit. Since then, the Circuit has hosted the Catalan MotoGP Grand Prix, two of the most prestigious championships of motor sports, which are now joined by Barcelona RX, the FIA Rallycross World Championship.</p><p>The race season of Circuit de Barcelona-Catalunya does also include other international Championships such as the FIM CEV Repsol International Championship, the Barcelona Speed Festival or the International GT Open; as well as local events that promote the sports, like the Catalan Car Racing and Motorcycling Championships. With the staging of the F1 Grand Prix, the MotoGP Grand Prix, the FIA Rallycross World Championship and other important motor sport competitions in its sports calendar, Circuit de Barcelona-Catalunya showcases.</p></div><ion-slide-box><ion-slide ng-repeat=\"image in vm.event.carousel\"><img ng-src=\"{{ image }}\"></ion-slide></ion-slide-box><br><br><!--ion-slides pager>\n <ion-slide>\n <img ng-src=\"image\" class=\"slide-image\"/>\n </ion-slide>\n </ion-slides--></ion-content></ion-view>"
+	module.exports = "<ion-view id=\"event-screen\"><ion-nav-title>{{ vm.event.title}}</ion-nav-title><ion-content><div class=\"event\"><ion-list type=\"card\"><ion-item class=\"text-center\" ng-if=\"!mv.isLoading\" ng-cloak><img ng-src=\"{{ vm.event.image }}\"><h2><i class=\"icon ion-sun\"></i> <span no-translate>{{ vm.event.title}}</span></h2><p><span no-translate>Date:</span> {{vm.event.date}} <span ng-if=\"vm.event.updated\">(Edited {{vm.event.updated}})</span></p></ion-item></ion-list><div class=\"text\"><p>The circuit hosted the first race only five days after the inauguration. The MotoGP Grand Prix was included the following season into the sports calendar of the Circuit. Since then, the Circuit has hosted the Catalan MotoGP Grand Prix, two of the most prestigious championships of motor sports, which are now joined by Barcelona RX, the FIA Rallycross World Championship.</p><p>The race season of Circuit de Barcelona-Catalunya does also include other international Championships such as the FIM CEV Repsol International Championship, the Barcelona Speed Festival or the International GT Open; as well as local events that promote the sports, like the Catalan Car Racing and Motorcycling Championships. With the staging of the F1 Grand Prix, the MotoGP Grand Prix, the FIA Rallycross World Championship and other important motor sport competitions in its sports calendar, Circuit de Barcelona-Catalunya showcases.</p></div><ion-slide-box><ion-slide ng-repeat=\"image in vm.event.carousel\"><img ng-src=\"{{ image }}\"></ion-slide></ion-slide-box><br><br></div></ion-content></ion-view>"
 
 /***/ },
 /* 8 */
@@ -1076,46 +1076,6 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var main_module_1 = __webpack_require__(2);
 	/**
-	 * Loading directive: displays a loading indicator while data is being loaded.
-	 *
-	 * Example usage: <div ui-loading="isLoading"></div>
-	 * The expected value of the directive attribute is a boolean indicating whether the content
-	 * is still loading or not.
-	 *
-	 * Additional parameter attributes:
-	 * - message: the loading message to display (none by default)
-	 *
-	 * Example: <div ui-loading="isLoading" message="Loading..."></div>
-	 */
-	var LoadingDirective = (function () {
-	    function LoadingDirective() {
-	        this.restrict = 'A';
-	        this.template = __webpack_require__(20);
-	        this.scope = {
-	            message: '<',
-	            isLoading: '<uiLoading'
-	        };
-	    }
-	    return LoadingDirective;
-	}());
-	exports.LoadingDirective = LoadingDirective;
-	main_module_1.default.directive('uiLoading', function () { return new LoadingDirective(); });
-
-
-/***/ },
-/* 20 */
-/***/ function(module, exports) {
-
-	module.exports = "<div ng-show=\"isLoading\" class=\"ui-loading text-center\"><ion-spinner icon=\"crescent\"></ion-spinner><span>{{message}}</span></div>"
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var main_module_1 = __webpack_require__(2);
-	/**
 	 * Event service: allows to get events of the year.
 	 */
 	var EventService = (function () {
@@ -1187,7 +1147,7 @@
 
 
 /***/ },
-/* 22 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1232,6 +1192,46 @@
 	exports.QuoteService = QuoteService;
 	main_module_1.default.service('quoteService', QuoteService);
 
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var main_module_1 = __webpack_require__(2);
+	/**
+	 * Loading directive: displays a loading indicator while data is being loaded.
+	 *
+	 * Example usage: <div ui-loading="isLoading"></div>
+	 * The expected value of the directive attribute is a boolean indicating whether the content
+	 * is still loading or not.
+	 *
+	 * Additional parameter attributes:
+	 * - message: the loading message to display (none by default)
+	 *
+	 * Example: <div ui-loading="isLoading" message="Loading..."></div>
+	 */
+	var LoadingDirective = (function () {
+	    function LoadingDirective() {
+	        this.restrict = 'A';
+	        this.template = __webpack_require__(22);
+	        this.scope = {
+	            message: '<',
+	            isLoading: '<uiLoading'
+	        };
+	    }
+	    return LoadingDirective;
+	}());
+	exports.LoadingDirective = LoadingDirective;
+	main_module_1.default.directive('uiLoading', function () { return new LoadingDirective(); });
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+	module.exports = "<div ng-show=\"isLoading\" class=\"ui-loading text-center\"><ion-spinner icon=\"crescent\"></ion-spinner><span>{{message}}</span></div>"
 
 /***/ },
 /* 23 */
