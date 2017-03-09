@@ -1,0 +1,169 @@
+<!doctype html> <html> <head> <meta charset="utf-8"> <title></title> <meta name="description" content=""> <meta name="viewport" content="width=device-width"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="stylesheet" href="styles/vendor.a81dc874.css"> <link rel="stylesheet" href="styles/main.cf2e7b3a.css"> <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet"> </head> <body ng-app="futbolDashboardApp"> <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]--> <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="max-height: 52px"> <div class="container -fluid" style="max-height: 52px"> <div class="navbar-header" style="min-width: 327px;margin-left: -14px" ng-controller="HeaderController"> <!--button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button--> <div ng-cloak ng-if="Events.percents.player_stats[0] > 95" class="pull-right" style="margin-right: 30px"> <a ng-click="changeDay(-1)" style="position: absolute;margin-left: -22px;margin-top: 14px"><span class="glyphicon glyphicon-chevron-left" style="font-size: 14px;color: red"></span></a> <select ng-model="Events.filters.selectedDay" ng-options="day as day.name for day in Events.days track by day.id" ng-change="changeDay()" class="form-control input-sm" style="width: 104px;margin-top: 9px"></select> <a ng-click="changeDay(1)" style="position:absolute;margin-left: 110px;margin-top: -25px"><span class="glyphicon glyphicon-chevron-right" style="font-size: 14px;color: red"></span></a> </div> <a ng-cloak ng-if="clickedBall" class="navbar-brand" ng-click="show('lfp')" ng-style="{'opacity':Events.currentView==='lfp' ? 1 : .3}"><img src="images/futbol.ffa7aba6.jpg"></a> <a ng-if="!clickedBall" class="navbar-brand" ng-click="show()" ng-style="{'opacity':Events.currentView==='lfp' ? 1 : .3}"><img src="images/spinner_ball.2071759b.gif"></a> <a class="navbar-brand" ng-click="show('rounds')" style="width: 50px" ng-style="{'opacity':Events.currentView==='rounds' ? 1 : .3}"><img src="images/vs.bcc383c5.png"></a> <!--a class="navbar-brand" ng-click="show('fantasy')" ng-style="{'opacity':Events.currentView==='fantasy' ? 1 : .3}"><img src="images/fantasy.47cab6c9.png"></a--> </div> <div class="collapse navbar-collapse" style="max-height: 52px"> <ul class="nav navbar-nav navbar-center" ng-controller="HeaderController" style="margin-left: 122px"> <li> <div ng-if="Events.percents.player_stats[0] < 96" class="progress" style="width: 124px;margin-top: 12px"> <div class="progress-bar progress-bar-success" ng-style="{ 'width': Events.percents.player_stats[0]+'%' }"> <span class="sr-only"></span> </div> <div class="progress-bar progress-bar-warning progress-bar-striped active" ng-style="{ 'width': (Events.percents.player_stats[1]-Events.percents.image30x30[1])+'%' }"> <span class="sr-only"></span> </div> <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 100%" ng-style="{ 'width': (Events.percents.image30x30[1])+'%' }"> <span class="sr-only"></span> </div> </div> <div> <h3 ng-cloak ng-if="Events.percents.player_stats[0] > 95" class="navbar-brand" style="margin-top: 2px;font-size: 22px;color: black">futbol.<a href="//github.com" target="_blank" style="color: red!important">github</a>.io</h3> </div> </li> </ul> <ul class="nav navbar-nav navbar-center" ng-controller="HeaderController"> <li> <div ng-cloak ng-if="Events.percents.player_stats[0] > 95 && (Events.percents.reqPending > 0 || Events.percents.processing)" class="progress" style="width: 124px;margin-top: 12px"> <div class="progress-bar progress-bar-success progress-bar-striped active" ng-style="{'width': Events.percents.reqPending*10+'px'}"> <span class="sr-only"></span> </div> <div class="progress-bar progress-bar-warning" ng-style="{'width': (Events.percents.processing ? 100 : 0)+'%'}"> <span class="sr-only"></span> </div> </div> </li> </ul> <ul class="nav navbar-nav navbar-right" ng-controller="HeaderController"> <input type="text" name="global_search" ng-model="Events.search.term" ng-change="Events.search.change(Events.search.term)" class="form-control" placeholder=">"> </ul> </div> </div> </nav> <div class="container -fluid page" ng-controller="FootballCtrl"> <div class="row"> <div class="col-md-3"> <div ng-cloak style="margin-top: 50px;margin-left: -8px;width: 107%" no-style="width: 95%; margin-left: 35px;"> <div ng-show="activeTab === 'lfp'"> <custom-table ng-cloak sort="points" sorters="{
+                  'points': Events.pointSorter,
+                  'currentPoints': Events.pointSorter
+                }" options="{'league': '85bffeb6-e0f0-46e4-a002-841d2ca529a7' }" properties="[
+                  {'attr': 'team_badge','type': 'image', 'height': '36px', 'top': '-6px', 'marginLeft': '2px'},
+                  {'attr': 'name','control': 'sort', 'name': 'Equipos', 'nameLeft':'-52px' },
+                  {'control':'sort','attr': 'value', 'transformer': '€', 'textColor': 'lightgrey', 'fontSize': '11px', 'textAlign': 'center', 'marginLeft': '10px' },
+                  {'control':'sort','attr': 'points', 'textAlign': 'center', 'marginLeft': '10px', 'transformer': 'p' },
+                  {'control':'sort','attr': 'currentPoints', 'transformer': '+', 'options': ['#1adf37','gold','red'], 'textAlign': 'right', 'missing': -1100, 'textAlign': 'center', 'marginLeft': '9px' }
+                ]" data="teams" shared="teams" loader="loader" methods="{ 'click': teamClick }" headers="headers"></custom-table> </div> <div ng-show="activeTab === 'rounds'"> <custom-table sort="3" options="{'league': '85bffeb6-e0f0-46e4-a002-841d2ca529a7' }" properties="[
+                  {'attr': 0, 'textAlign': 'right'},
+                  {'attr': 1,'type': 'image', 'height': '28px', 'top': '-6px', 'marginLeft': '2px' },
+                  {'attr': 2,'control':'sort','marginLeft': '-4px'},
+                  {'attr': 3,'control':'sort','marginLeft': '-4px'},
+                  {'attr': 4,'type': 'image', 'height': '28px', 'top': '-6px', 'marginLeft': '2px' },
+                  {'attr': 5, 'textAlign': 'left'}
+                ]" src="./data/laliga/rounds.json" hierarchy="{ 'resultsDay': Events.filters }" shared="rounds" loader="loader" methods="{
+                  'fetch': setTeams,
+                  'click': roundClick
+                }"></custom-table> <p> </p> </div> <div ng-show="activeTab === 'fantasy'"><br> <form ng-show="!user.logged" class="form-horizontal" ng-submit="login(user)"> <div class="form-group"> <label for="userEmail" class="col-sm-3 control-label">Email</label> <div class="col-sm-9"> <input id="userEmail" type="email" class="form-control" ng-model="user.email" placeholder="Email"> </div> </div> <div class="form-group"> <label for="userPassword" class="col-sm-3 control-label">Password</label> <div class="col-sm-9"> <input id="userPassword" type="password" class="form-control" ng-model="user.password" placeholder="Password"> </div> </div> <div class="form-group"> <div class="col-sm-offset-3 col-sm-9"> <div class="checkbox"> <label> <input type="checkbox"> Remember me </label> </div> </div> </div> <div class="form-group"> <div class="col-sm-offset-3 col-sm-9"> <button type="submit" class="btn btn-default">Sign in</button> </div> </div><br> <label ng-cloak ng-if="user.error" style="color:red" class="pull-right">{{ user.error }}</label> </form> <div ng-show="user.logged"> <select ng-model="user.selectedLeague" ng-options="league as league.league.name for league in leagues track by league.id" class="form-control input-sm"></select> <custom-table no-if="user.selectedLeague" sort="teamPoints" primary="short_name" no-options="{ 'team': user.selectedLeague.id, 'league': user.selectedLeague.league.id }" properties="[
+                    {'attr': 'avatar','type': 'image', 'exclude': 'ANONYMOUS', 'height': '32px', 'border': '16px' },
+                    {'attr': 'managerName', 'name': 'Entrenador' },
+                    {'control':'sort','attr': 'teamValue', 'transformer': '€', 'fontSize': '11px', 'textColor': 'lightgrey' },
+                    {'control':'sort','attr': 'teamPoints', 'transformer': 'number', 'textAlign': 'center', 'marginLeft': '10px' },
+                    {'control':'sort','attr': 'currentPoints', 'transformer': '+', 'options': ['#1adf37','gold','red'], 'textAlign': 'right', 'missing': -1100, 'textAlign': 'center', 'marginLeft': '9px' }
+                  ]" sorters="{
+                    'teamPoints': Events.pointSorter,
+                    'currentPoints': Events.pointSorter
+                  }" loader="loader" headers="headers" shared="league" data="user.selectedLeague" href="https://api-game.laligafantasymarca.com/api/1/league/{league}/ranking"></custom-table><br><br><br><br> <a ng-click="logout()" style="margin-left: 8px">Logout</a> </div> </div> </div> </div> <div class="col-md-5" style="background-image: url(./images/football.a6347684.jpg); background-size: cover;height: 763px"><br> <football-team id="team" ng-show="!Events.match" players="team" loader="loader" cache="cache" style="width: 100%;height: 763px"></football-team> <football-team id="team1" ng-show="Events.match && Events.filters.team1" team="Events.filters" players="team1" loader="loader" cache="cache" direction="down" half="match" style="width: 100%;height: 380px"></football-team> <football-team id="team2" ng-show="Events.match && Events.filters.team2" team="Events.filters" players="team2" loader="loader" cache="cache" half="match" style="width: 100%;height: 380px"></football-team> </div> <div class="col-md-4"> <div style="margin-top: 50px;margin-left: -19px;width: 111%" no-style="margin-left: -20px;width: 97%;"> <custom-table ng-cloak data="[]" shared="bench" ng-show="Events.shared.bench.data.list.length" sort="points" searcher="Events.search" methods="{
+                'click': onBenchPlayerClick
+              }" sorters="{
+                'points': Events.pointSorter,
+                'currentPoints': Events.pointSorter
+              }" properties="[{
+                &quot;attr&quot;: &quot;currentPoints&quot;,
+                &quot;options&quot;: [&quot;#1adf37&quot;,&quot;gold&quot;,&quot;red&quot;],
+                &quot;control&quot;: &quot;sort&quot;,
+                &quot;textAlign&quot;: &quot;center&quot;,
+                &quot;marginLeft&quot;: &quot;3px&quot;,
+                &quot;missing&quot;: &quot;-100&quot;,
+                &quot;transformer&quot;: &quot;+&quot;
+              },{
+                &quot;type&quot;: &quot;status&quot;,
+                &quot;attr&quot;: &quot;player_status&quot;,
+                &quot;exclude&quot;: &quot;currentPoints&quot;,
+                &quot;then&quot;: &quot;mins_played&quot;,
+                &quot;ok&quot;: &quot;ok&quot;
+              },{
+                &quot;attr&quot;: &quot;image30x30&quot;,
+                &quot;height&quot;: &quot;30px&quot;,
+                &quot;border&quot;: &quot;15px&quot;,
+                &quot;undefined&quot;: &quot;./images/fantasy_no_image.png&quot;,
+                &quot;type&quot;: &quot;image&quot;
+              },{
+                &quot;attr&quot;: &quot;nickname&quot;,
+                &quot;name&quot;: &quot;Jugadores&quot;, 
+                &quot;marginLeft&quot;: &quot;2px&quot;,
+                &quot;searcher&quot;: true,
+                &quot;control&quot;: &quot;sort&quot;
+              },{
+                &quot;attr&quot;: &quot;player_value&quot;,
+                &quot;control&quot;: &quot;sort&quot;,
+                &quot;transformer&quot;: &quot;€&quot;,
+                &quot;textColor&quot;: &quot;lightgrey&quot;,
+                &quot;fontSize&quot;: &quot;11px&quot;,
+                &quot;textAlign&quot;: &quot;center&quot;,
+                &quot;marginLeft&quot;: &quot;10px&quot;
+              },{
+                &quot;attr&quot;: &quot;points&quot;,
+                &quot;control&quot;: &quot;sort&quot;,
+                &quot;textAlign&quot;: &quot;center&quot;,
+                &quot;transformer&quot;: &quot;p&quot;,
+                &quot;marginLeft&quot;: &quot;4px&quot;
+              },{
+                &quot;attr&quot;: &quot;team_badge&quot;,
+                &quot;height&quot;: &quot;28px&quot;,
+                &quot;type&quot;: &quot;image&quot;
+              },{
+                &quot;attr&quot;: &quot;position_id&quot;,
+                &quot;control&quot;: &quot;sort&quot;,
+                &quot;type&quot;: &quot;color&quot;,
+                &quot;textColor&quot;: &quot;white&quot;,
+                &quot;textAlign&quot;: &quot;center&quot;,
+                &quot;opacity&quot;: &quot;.62&quot;,
+                &quot;colors&quot;: [&quot;black&quot;, &quot;orange&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;red&quot;],
+                &quot;options&quot;: [&quot;-&quot;, &quot;P&quot;, &quot;D&quot;, &quot;M&quot;, &quot;A&quot;]
+              }]"></custom-table> <custom-table ng-show="!Events.shared.bench || !Events.shared.bench.data.list.length" src="./data/laliga/players_up.json" sort="points" required focus="left" loader="loader" shared="players" headers="headers" searcher="Events.search" methods="{
+                'fetch': fetchPlayers,
+                'source': onPlayerTeam,
+                'click': onPlayerClick
+              }" sorters="{
+                'points': Events.pointSorter,
+                'currentPoints': Events.pointSorter
+              }" filters="{
+                'team_badge': [Events.filters,['team','team1','team2']]
+              }" properties="[{
+                &quot;attr&quot;: &quot;currentPoints&quot;,
+                &quot;options&quot;: [&quot;#1adf37&quot;,&quot;gold&quot;,&quot;red&quot;],
+                &quot;control&quot;: &quot;sort&quot;,
+                &quot;textAlign&quot;: &quot;center&quot;,
+                &quot;marginLeft&quot;: &quot;3px&quot;,
+                &quot;missing&quot;: &quot;-100&quot;,
+                &quot;transformer&quot;: &quot;+&quot;
+              },{
+                &quot;type&quot;: &quot;status&quot;,
+                &quot;attr&quot;: &quot;player_status&quot;,
+                &quot;exclude&quot;: &quot;currentPoints&quot;,
+                &quot;then&quot;: &quot;mins_played&quot;,
+                &quot;ok&quot;: &quot;ok&quot;
+              },{
+                &quot;attr&quot;: &quot;image30x30&quot;,
+                &quot;height&quot;: &quot;30px&quot;,
+                &quot;border&quot;: &quot;15px&quot;,
+                &quot;undefined&quot;: &quot;./images/fantasy_no_image.png&quot;,
+                &quot;type&quot;: &quot;image&quot;
+              },{
+                &quot;attr&quot;: &quot;nickname&quot;,
+                &quot;name&quot;: &quot;Jugadores&quot;,
+                &quot;marginLeft&quot;: &quot;2px&quot;,
+                &quot;nameLeft&quot;: &quot;-64px&quot;,
+                &quot;searcher&quot;: true,
+                &quot;control&quot;: &quot;sort&quot;
+              },{
+                &quot;attr&quot;: &quot;player_value&quot;,
+                &quot;control&quot;: &quot;sort&quot;,
+                &quot;transformer&quot;: &quot;€&quot;,
+                &quot;textColor&quot;: &quot;lightgrey&quot;,
+                &quot;fontSize&quot;: &quot;11px&quot;,
+                &quot;textAlign&quot;: &quot;center&quot;,
+                &quot;marginLeft&quot;: &quot;10px&quot;
+              },{
+                &quot;attr&quot;: &quot;points&quot;,
+                &quot;control&quot;: &quot;sort&quot;,
+                &quot;textAlign&quot;: &quot;center&quot;,
+                &quot;transformer&quot;: &quot;p&quot;,
+                &quot;marginLeft&quot;: &quot;4px&quot;
+              },{
+                &quot;attr&quot;: &quot;team_badge&quot;,
+                &quot;height&quot;: &quot;28px&quot;,
+                &quot;type&quot;: &quot;image&quot;
+              },{
+                &quot;attr&quot;: &quot;position_id&quot;,
+                &quot;control&quot;: &quot;sort&quot;,
+                &quot;type&quot;: &quot;color&quot;,
+                &quot;textColor&quot;: &quot;white&quot;,
+                &quot;textAlign&quot;: &quot;center&quot;,
+                &quot;opacity&quot;: &quot;.62&quot;,
+                &quot;colors&quot;: [&quot;black&quot;, &quot;orange&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;red&quot;],
+                &quot;options&quot;: [&quot;-&quot;, &quot;P&quot;, &quot;D&quot;, &quot;M&quot;, &quot;A&quot;]
+              }]"></custom-table> <br> </div> </div> </div> </div> <div id="node-tooltip" class="node-tooltip"> <span style="position: absolute; right: 6px; top: 3px" class="node-tooltip-image"></span> <div class="node-tooltip-container"> <div class="node-tooltip-header"> <div class="node-tooltip-title"> </div> <div class="node-tooltip-subtitle"> </div> </div> <div class="node-tooltip-data-container"> </div> </div> </div> <!--footer class="footer">
+      <div class="container">
+        
+      </div>
+    </footer--> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <!--script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script--> <script src="scripts/vendor.7b337f41.js"></script> <!--script src="libs/bluebird.js"></script--> <script src="scripts/scripts.a0b0bc8c.js"></script> </body> </html>
