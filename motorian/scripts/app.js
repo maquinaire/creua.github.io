@@ -56,11 +56,11 @@
 	__webpack_require__(14);
 	__webpack_require__(15);
 	__webpack_require__(16);
-	__webpack_require__(17);
 	__webpack_require__(18);
 	__webpack_require__(19);
 	__webpack_require__(20);
 	__webpack_require__(21);
+	__webpack_require__(22);
 	__webpack_require__(23);
 	module.exports = __webpack_require__(24);
 
@@ -165,40 +165,31 @@
 	function routeConfig($stateProvider, $urlRouterProvider, gettext) {
 	    // Routes configuration
 	    $urlRouterProvider.otherwise('/');
+	    var events = {
+	        'menuContent': {
+	            template: __webpack_require__(5),
+	            controller: 'eventsController as vm'
+	        }
+	    };
 	    $stateProvider
 	        .state('app', {
-	        template: __webpack_require__(5),
+	        template: __webpack_require__(6),
 	        controller: 'shellController as shell'
 	    })
 	        .state('app.updates', {
 	        url: '/updates',
-	        views: {
-	            'menuContent': {
-	                template: __webpack_require__(6),
-	                controller: 'eventsController as vm'
-	            }
-	        },
-	        data: { title: gettext('Home') }
+	        views: events,
+	        data: { title: 'UPDATES', context: 'updates' }
 	    })
 	        .state('app.future', {
 	        url: '/',
-	        views: {
-	            'menuContent': {
-	                template: __webpack_require__(6),
-	                controller: 'eventsController as vm'
-	            }
-	        },
-	        data: { title: gettext('Home') }
+	        views: events,
+	        data: { title: 'FUTURE', context: 'future' }
 	    })
 	        .state('app.past', {
 	        url: '/past',
-	        views: {
-	            'menuContent': {
-	                template: __webpack_require__(6),
-	                controller: 'eventsController as vm'
-	            }
-	        },
-	        data: { title: gettext('Home') }
+	        views: events,
+	        data: { title: 'PAST', context: 'past' }
 	    })
 	        .state('app.event', {
 	        url: '/event/:id',
@@ -207,8 +198,7 @@
 	                template: __webpack_require__(7),
 	                controller: 'eventController as vm'
 	            }
-	        },
-	        data: { title: gettext('Home') }
+	        }
 	    })
 	        .state('app.about', {
 	        url: '/about',
@@ -217,8 +207,7 @@
 	                template: __webpack_require__(8),
 	                controller: 'aboutController as vm'
 	            }
-	        },
-	        data: { title: gettext('About') }
+	        }
 	    });
 	}
 	main_module_1.default.config(routeConfig);
@@ -228,19 +217,19 @@
 /* 5 */
 /***/ function(module, exports) {
 
-	module.exports = "<ion-side-menus id=\"shell\" class=\"shell\" enable-menu-with-back-views=\"true\"><!--View content--><ion-side-menu-content><ion-nav-bar class=\"bar-stable\"><ion-nav-back-button></ion-nav-back-button><ion-nav-buttons side=\"left\"><button class=\"button button-icon button-clear ion-navicon\" menu-toggle=\"left\" ng-hide=\"$exposeAside.active\"></button></ion-nav-buttons></ion-nav-bar><ion-nav-view name=\"menuContent\"></ion-nav-view></ion-side-menu-content><!--Side menu--><ion-side-menu side=\"left\" expose-aside-when=\"(min-width:769px)\"><ion-header-bar class=\"bar-dark\"><h1 class=\"title\" translate>APP_NAME</h1></ion-header-bar><ion-content class=\"dark-bg\"><ion-list><ion-item class=\"item-dark item-icon-left\" menu-close href=\"#/\" ng-class=\"{ active: shell.stateContains('app.future') }\"><span class=\"medium-dark\"><i class=\"icon ion-skip-forward\"></i> <span no-translate>FUTURE</span></span></ion-item><ion-item class=\"item-dark item-icon-left\" menu-close href=\"#/past\" ng-class=\"{ active: shell.stateContains('app.past') }\"><span class=\"medium-dark\"><i class=\"icon ion-skip-backward\"></i> <span no-translate>PAST</span></span></ion-item><ion-item class=\"item-dark item-icon-left\" menu-close href=\"#/updates\" ng-class=\"{ active: shell.stateContains('app.updates') }\"><span class=\"medium-dark\"><i class=\"icon ion-flash\"></i> <span no-translate>UPDATES</span></span></ion-item><ion-item class=\"item-dark item-icon-left text-darker\" menu-close href=\"#/about\" ng-class=\"{ active: shell.stateContains('app.about') }\"><span class=\"medium-dark\"><i class=\"icon ion-information-circled icon-large\"></i> <span no-translate>About</span></span></ion-item></ion-list></ion-content></ion-side-menu></ion-side-menus>"
+	module.exports = "<ion-view id=\"events-screen\"><ion-nav-title>{{ viewTitle }}</ion-nav-title><ion-content><div class=\"card-background-page\"><a ng-href=\"#/event/{{ event.id }}\" ng-repeat=\"event in vm.events\"><img ng-src=\"{{ event.image }}\"><div class=\"card-text\"><div class=\"card-title\">{{ event.title }}</div><div class=\"card-subtitle\">{{ event.date }}</div></div></a></div></ion-content></ion-view>"
 
 /***/ },
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<ion-view id=\"events-screen\"><ion-nav-title>{{ vm.isPast ? 'PAST' : (vm.showUpdated ? 'UPDATES' : 'FUTURE') }}</ion-nav-title><ion-content><div class=\"card-background-page\"><a ng-href=\"#/event/{{ event.id }}\" ng-repeat=\"event in vm.events\"><img ng-src=\"{{ event.image }}\"><div class=\"card-text\"><div class=\"card-title\">{{ event.title }}</div><div class=\"card-subtitle\">{{ event.date }}</div></div></a></div></ion-content></ion-view>"
+	module.exports = "<ion-side-menus id=\"shell\" class=\"shell\" enable-menu-with-back-views=\"true\"><!--View content--><ion-side-menu-content><ion-nav-bar class=\"bar-stable\"><ion-nav-back-button></ion-nav-back-button><ion-nav-buttons side=\"left\"><button class=\"button button-icon button-clear ion-navicon\" menu-toggle=\"left\" ng-hide=\"$exposeAside.active\"></button></ion-nav-buttons></ion-nav-bar><ion-nav-view name=\"menuContent\"></ion-nav-view></ion-side-menu-content><!--Side menu--><ion-side-menu side=\"left\" expose-aside-when=\"(min-width:769px)\"><ion-header-bar class=\"bar-dark\"><h1 class=\"title\" translate>APP_NAME</h1></ion-header-bar><ion-content class=\"dark-bg\"><ion-list><ion-item class=\"item-dark item-icon-left\" menu-close href=\"#/\" ng-class=\"{ active: shell.stateContains('app.future') }\"><span class=\"medium-dark\"><i class=\"icon ion-skip-forward\"></i> <span no-translate>FUTURE</span></span></ion-item><ion-item class=\"item-dark item-icon-left\" menu-close href=\"#/past\" ng-class=\"{ active: shell.stateContains('app.past') }\"><span class=\"medium-dark\"><i class=\"icon ion-skip-backward\"></i> <span no-translate>PAST</span></span></ion-item><ion-item class=\"item-dark item-icon-left\" menu-close href=\"#/updates\" ng-class=\"{ active: shell.stateContains('app.updates') }\"><span class=\"medium-dark\"><i class=\"icon ion-flash\"></i> <span no-translate>UPDATES</span></span></ion-item><ion-item class=\"item-dark item-icon-left text-darker\" menu-close href=\"#/about\" ng-class=\"{ active: shell.stateContains('app.about') }\"><span class=\"medium-dark\"><i class=\"icon ion-information-circled icon-large\"></i> <span no-translate>About</span></span></ion-item></ion-list></ion-content></ion-side-menu></ion-side-menus>"
 
 /***/ },
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "<ion-view id=\"event-screen\"><ion-nav-title>{{ vm.event.title}}</ion-nav-title><ion-content><div class=\"event\"><ion-list type=\"card\"><ion-item class=\"text-center\" ng-if=\"!mv.isLoading\" ng-cloak><img ng-src=\"{{ vm.event.image }}\"><h2><i class=\"icon ion-sun\"></i> <span no-translate>{{ vm.event.title}}</span></h2><p><span no-translate>Date:</span> {{vm.event.date}} <span ng-if=\"vm.event.updated\">(Edited {{vm.event.updated}})</span></p></ion-item></ion-list><div class=\"text\"><p>The circuit hosted the first race only five days after the inauguration. The MotoGP Grand Prix was included the following season into the sports calendar of the Circuit. Since then, the Circuit has hosted the Catalan MotoGP Grand Prix, two of the most prestigious championships of motor sports, which are now joined by Barcelona RX, the FIA Rallycross World Championship.</p><p>The race season of Circuit de Barcelona-Catalunya does also include other international Championships such as the FIM CEV Repsol International Championship, the Barcelona Speed Festival or the International GT Open; as well as local events that promote the sports, like the Catalan Car Racing and Motorcycling Championships. With the staging of the F1 Grand Prix, the MotoGP Grand Prix, the FIA Rallycross World Championship and other important motor sport competitions in its sports calendar, Circuit de Barcelona-Catalunya showcases.</p></div><ion-slide-box><ion-slide ng-repeat=\"image in vm.event.carousel\"><img ng-src=\"{{ image }}\"></ion-slide></ion-slide-box><br><br></div></ion-content></ion-view>"
+	module.exports = "<ion-view id=\"event-screen\"><ion-nav-title>{{ vm.event.title }}</ion-nav-title><ion-content><div class=\"event\"><ion-list type=\"card\"><ion-item class=\"text-center\" ng-if=\"!mv.isLoading\" ng-cloak><img ng-src=\"{{ vm.event.image }}\"><h2><i class=\"icon ion-sun\"></i> <span no-translate>{{ vm.event.title}}</span></h2><p><span no-translate>Date:</span> {{vm.event.date}} <span ng-if=\"vm.event.updated\">(Edited {{vm.event.updated}})</span></p></ion-item></ion-list><div class=\"text\" ng-bind-html=\"vm.event.body\"></div><ion-slide-box><ion-slide ng-repeat=\"image in vm.event.carousel\"><img ng-src=\"{{ image }}\"></ion-slide></ion-slide-box><br><br></div></ion-content></ion-view>"
 
 /***/ },
 /* 8 */
@@ -552,60 +541,6 @@
 /* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var main_module_1 = __webpack_require__(2);
-	/**
-	 * Context service: provides URL context injection based on specified context.
-	 */
-	var ContextService = (function () {
-	    ContextService.$inject = ["logger"];
-	    function ContextService(logger) {
-	        this.logger = logger.getLogger('contextService');
-	    }
-	    /**
-	     * Injects the specified context into the given REST API.
-	     * The REST API should be formatted like "/api/users/:userId".
-	     * Any fragment from the REST API starting with ":" will then be replaced by a property from the context with
-	     * the same name, i.e. for "/api/users/:userId" and a context object "{ userId: 123 }", the resulting URL will
-	     * be "/api/users/123".
-	     * @param {!string} restApi The REST API to fill will context values.
-	     * @param {Object} context The context to use.
-	     * @return {string} The ready-to-use REST API to call.
-	     */
-	    ContextService.prototype.inject = function (restApi, context) {
-	        var _this = this;
-	        this.logger.log('Injecting context in: ' + restApi);
-	        if (!context) {
-	            throw 'inject: context must be defined';
-	        }
-	        // Search for context properties to inject
-	        var properties = restApi.match(/(:\w+)/g);
-	        angular.forEach(properties, function (property) {
-	            var contextVar = property.substring(1);
-	            var contextValue = context[contextVar];
-	            if (contextValue !== undefined) {
-	                contextValue = encodeURIComponent(contextValue);
-	                restApi = restApi.replace(property, contextValue);
-	                _this.logger.log('Injected ' + contextValue + ' for ' + property);
-	            }
-	            else {
-	                throw 'inject: context.' + contextVar + ' expected but undefined';
-	            }
-	        });
-	        this.logger.log('Resulting REST API: ' + restApi);
-	        return restApi;
-	    };
-	    return ContextService;
-	}());
-	exports.ContextService = ContextService;
-	main_module_1.default.service('contextService', ContextService);
-
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/**
 	 * Provides a simple logging system with the possibility of registering log observers.
 	 * In order to track the source module of message logs,
@@ -705,6 +640,60 @@
 	}());
 	exports.LoggerService = LoggerService;
 	main_module_1.default.service('logger', LoggerService);
+
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var main_module_1 = __webpack_require__(2);
+	/**
+	 * Context service: provides URL context injection based on specified context.
+	 */
+	var ContextService = (function () {
+	    ContextService.$inject = ["logger"];
+	    function ContextService(logger) {
+	        this.logger = logger.getLogger('contextService');
+	    }
+	    /**
+	     * Injects the specified context into the given REST API.
+	     * The REST API should be formatted like "/api/users/:userId".
+	     * Any fragment from the REST API starting with ":" will then be replaced by a property from the context with
+	     * the same name, i.e. for "/api/users/:userId" and a context object "{ userId: 123 }", the resulting URL will
+	     * be "/api/users/123".
+	     * @param {!string} restApi The REST API to fill will context values.
+	     * @param {Object} context The context to use.
+	     * @return {string} The ready-to-use REST API to call.
+	     */
+	    ContextService.prototype.inject = function (restApi, context) {
+	        var _this = this;
+	        this.logger.log('Injecting context in: ' + restApi);
+	        if (!context) {
+	            throw 'inject: context must be defined';
+	        }
+	        // Search for context properties to inject
+	        var properties = restApi.match(/(:\w+)/g);
+	        angular.forEach(properties, function (property) {
+	            var contextVar = property.substring(1);
+	            var contextValue = context[contextVar];
+	            if (contextValue !== undefined) {
+	                contextValue = encodeURIComponent(contextValue);
+	                restApi = restApi.replace(property, contextValue);
+	                _this.logger.log('Injected ' + contextValue + ' for ' + property);
+	            }
+	            else {
+	                throw 'inject: context.' + contextVar + ' expected but undefined';
+	            }
+	        });
+	        this.logger.log('Resulting REST API: ' + restApi);
+	        return restApi;
+	    };
+	    return ContextService;
+	}());
+	exports.ContextService = ContextService;
+	main_module_1.default.service('contextService', ContextService);
 
 
 /***/ },
@@ -966,23 +955,40 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var main_module_1 = __webpack_require__(2);
 	/**
-	 * Displays the about screen.
+	 * Loading directive: displays a loading indicator while data is being loaded.
+	 *
+	 * Example usage: <div ui-loading="isLoading"></div>
+	 * The expected value of the directive attribute is a boolean indicating whether the content
+	 * is still loading or not.
+	 *
+	 * Additional parameter attributes:
+	 * - message: the loading message to display (none by default)
+	 *
+	 * Example: <div ui-loading="isLoading" message="Loading..."></div>
 	 */
-	var AboutController = (function () {
-	    AboutController.$inject = ["logger", "config"];
-	    function AboutController(logger, config) {
-	        this.logger = logger.getLogger('about');
-	        this.version = config.version;
-	        this.logger.log('init');
+	var LoadingDirective = (function () {
+	    function LoadingDirective() {
+	        this.restrict = 'A';
+	        this.template = __webpack_require__(17);
+	        this.scope = {
+	            message: '<',
+	            isLoading: '<uiLoading'
+	        };
 	    }
-	    return AboutController;
+	    return LoadingDirective;
 	}());
-	exports.AboutController = AboutController;
-	main_module_1.default.controller('aboutController', AboutController);
+	exports.LoadingDirective = LoadingDirective;
+	main_module_1.default.directive('uiLoading', function () { return new LoadingDirective(); });
 
 
 /***/ },
 /* 17 */
+/***/ function(module, exports) {
+
+	module.exports = "<div ng-show=\"isLoading\" class=\"ui-loading text-center\"><ion-spinner icon=\"crescent\"></ion-spinner><span>{{message}}</span></div>"
+
+/***/ },
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1013,7 +1019,30 @@
 
 
 /***/ },
-/* 18 */
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	Object.defineProperty(exports, "__esModule", { value: true });
+	var main_module_1 = __webpack_require__(2);
+	/**
+	 * Displays the about screen.
+	 */
+	var AboutController = (function () {
+	    AboutController.$inject = ["logger", "config"];
+	    function AboutController(logger, config) {
+	        this.logger = logger.getLogger('about');
+	        this.version = config.version;
+	        this.logger.log('init');
+	    }
+	    return AboutController;
+	}());
+	exports.AboutController = AboutController;
+	main_module_1.default.controller('aboutController', AboutController);
+
+
+/***/ },
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1032,6 +1061,7 @@
 	        this.logger = logger.getLogger('events');
 	        this.eventService = eventService;
 	        this.logger.log('init');
+	        console.log(this);
 	        var self = this;
 	        eventService.getEvents(this.isPast).then(function (years) {
 	            _.each(years, function (events) {
@@ -1069,7 +1099,7 @@
 
 
 /***/ },
-/* 19 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1104,7 +1134,13 @@
 	        var self = this;
 	        this.isLoading = true;
 	        return this.data.then(function () {
-	            return self.eventsMap[event.id];
+	            var ev = self.eventsMap[event.id];
+	            if (!ev.body && ev.content) {
+	                self.restService.get(ev.content).then(function (body) {
+	                    ev.body = body.data;
+	                });
+	            }
+	            return ev;
 	        })
 	            .finally(function () {
 	            self.isLoading = false;
@@ -1147,7 +1183,7 @@
 
 
 /***/ },
-/* 20 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1192,46 +1228,6 @@
 	exports.QuoteService = QuoteService;
 	main_module_1.default.service('quoteService', QuoteService);
 
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
-	var main_module_1 = __webpack_require__(2);
-	/**
-	 * Loading directive: displays a loading indicator while data is being loaded.
-	 *
-	 * Example usage: <div ui-loading="isLoading"></div>
-	 * The expected value of the directive attribute is a boolean indicating whether the content
-	 * is still loading or not.
-	 *
-	 * Additional parameter attributes:
-	 * - message: the loading message to display (none by default)
-	 *
-	 * Example: <div ui-loading="isLoading" message="Loading..."></div>
-	 */
-	var LoadingDirective = (function () {
-	    function LoadingDirective() {
-	        this.restrict = 'A';
-	        this.template = __webpack_require__(22);
-	        this.scope = {
-	            message: '<',
-	            isLoading: '<uiLoading'
-	        };
-	    }
-	    return LoadingDirective;
-	}());
-	exports.LoadingDirective = LoadingDirective;
-	main_module_1.default.directive('uiLoading', function () { return new LoadingDirective(); });
-
-
-/***/ },
-/* 22 */
-/***/ function(module, exports) {
-
-	module.exports = "<div ng-show=\"isLoading\" class=\"ui-loading text-center\"><ion-spinner icon=\"crescent\"></ion-spinner><span>{{message}}</span></div>"
 
 /***/ },
 /* 23 */

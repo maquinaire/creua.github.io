@@ -1,7 +1,7 @@
 [{
 	"id": "castelloli2",
 	"title": "Next Castellolí",
-	"content": "events/2017/castelloli.md",
+	"content": "content/demo.html",
 	"date": "14 Mar 2017",
 	"image": "http://www.paintballcastelloli.com/gallery/karting_Castelloli.JPG",
 	"carousel": [
@@ -12,7 +12,7 @@
 },{
 	"id": "montmelo",
 	"title": "Track Montmeló",
-	"content": "events/2017/montmelo.md",
+	"content": "content/demo.html",
 	"date": "1 Feb 2017",
 	"updated": "1 Mar 2017",
 	"image": "http://static.panoramio.com/photos/large/180677.jpg",
@@ -24,7 +24,7 @@
 },{
 	"id": "castelloli",
 	"title": "Test Castellolí",
-	"content": "events/2017/castelloli.md",
+	"content": "content/demo.html",
 	"date": "22 Jan 2017",
 	"image": "http://www.paintballcastelloli.com/gallery/karting_Castelloli.JPG",
 	"carousel": [
@@ -35,7 +35,7 @@
 },{
 	"id": "monaco",
 	"title": "Monaco",
-	"content": "events/2017/osona.md",
+	"content": "content/demo.html",
 	"date": "22 May 2017",
 	"image": "http://www.formulapassion.it/wp-content/uploads/2014/05/Photo4srl_600684.jpg",
 	"carousel": []
